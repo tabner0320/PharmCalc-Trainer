@@ -1,64 +1,376 @@
 /* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    background-color: #f4f7fb;
+    color: #222;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1f4e79;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+header p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+main {
+    width: 90%;
+    max-width: 950px;
+    margin: 35px auto;
+}
+
+
+/* =========================
+   CALCULATOR CARDS
+========================= */
+
+.calculator-card {
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 28px;
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
+}
+
+.calculator-card h2 {
+    margin-top: 0;
+    color: #1f4e79;
+}
+
+.calculator-card h3 {
+    color: #333;
+}
+
+
+/* =========================
+   LABELS
+========================= */
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   INPUTS AND SELECTS
+========================= */
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #1f4e79;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    margin-top: 18px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1f4e79;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #163a5c;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   FORMULA DISPLAY
+========================= */
+
+.formula {
+    margin: 18px 0;
+    padding: 14px;
+    border-left: 4px solid #1f4e79;
+    background-color: #eef4fa;
+    font-weight: bold;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+.result {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 6px;
+    background-color: #eef4fa;
+    min-height: 20px;
+}
+
+
+/* =========================
+   PRACTICE MODE
+========================= */
+
+.practice-question {
+    margin: 20px 0;
+    padding: 18px;
+    background-color: #f0f6fc;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.practice-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.practice-buttons button {
+    margin-top: 18px;
+}
+
+
+/* =========================
+   DEVICE SCORE
+========================= */
+
+.device-score-box {
+    margin-top: 20px;
+    padding: 12px;
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #eef4fa;
+}
+
+.device-question {
+    margin-top: 25px;
+    text-align: center;
+}
+
+
+/* =========================
+   DOSING SPOON PRACTICE
+========================= */
+
+.spoon-practice-area {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+    overflow-x: auto;
+}
+
+.dosing-spoon {
+    display: flex;
+    align-items: center;
+    min-width: 500px;
+}
+
+.spoon-bowl {
+    position: relative;
+
+    width: 280px;
+    height: 150px;
+
+    overflow: hidden;
+
+    border: 4px solid #555;
+    border-radius: 50%;
+
+    background-color: white;
+}
+
+.spoon-liquid {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 0%;
+
+    background-color:
+        rgba(100, 160, 220, 0.55);
+
+    transition:
+        height 0.3s ease;
+
+    z-index: 1;
+}
+
+.measurement-line {
+    position: absolute;
+
+    right: 18px;
+
+    width: 110px;
+    height: 28px;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    border-top: 3px solid #222;
+    border-radius: 0;
+
+    background-color: transparent;
+    color: #222;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    z-index: 3;
+}
+
+.measurement-line:hover {
+    background-color:
+        rgba(0, 0, 0, 0.06);
+}
+
+.measurement-line.selected {
+    border-top-width: 6px;
+    font-weight: bold;
+}
+
+.line-1 {
+    bottom: 20%;
+}
+
+.line-2-5 {
+    bottom: 50%;
+}
+
+.line-5 {
+    bottom: 82%;
+}
+
+.spoon-handle {
+    width: 220px;
+    height: 45px;
+
+    margin-left: -10px;
+
+    border: 4px solid #555;
+    border-left: none;
+    border-radius: 0 30px 30px 0;
+
+    background-color: white;
+}
+
+#selectedVolumeText {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#resetDeviceScoreButton {
+    margin-top: 12px;
+}
+
+
+/* =========================
    ORAL SYRINGE
 ========================= */
 
 .syringe-practice-area {
     margin: 40px 0;
-
     overflow-x: auto;
-
     text-align: center;
 }
 
-
 .syringe-wrapper {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     min-width: 760px;
 
-    padding: 45px 20px 25px;
+    padding:
+        45px
+        20px
+        25px;
 }
 
 
-/* PLUNGER */
+/* =========================
+   SYRINGE PLUNGER
+========================= */
 
 .syringe-plunger-handle {
     width: 24px;
-
     height: 90px;
 
     border: 4px solid #555;
-
     border-radius: 5px;
 
     background-color: white;
 }
 
-
 .syringe-plunger-rod {
     width: 90px;
-
     height: 20px;
 
     border-top: 4px solid #555;
-
     border-bottom: 4px solid #555;
 
     background-color: white;
 }
 
 
-/* BARREL */
+/* =========================
+   SYRINGE BARREL
+========================= */
 
 .syringe-barrel {
     position: relative;
 
     width: 520px;
-
     height: 120px;
 
     overflow: visible;
@@ -69,17 +381,17 @@
 }
 
 
-/* LIQUID */
+/* =========================
+   SYRINGE LIQUID
+========================= */
 
 .syringe-liquid {
     position: absolute;
 
     top: 0;
-
     left: 0;
 
     width: 0%;
-
     height: 100%;
 
     background-color:
@@ -92,7 +404,9 @@
 }
 
 
-/* MEASUREMENT MARKS */
+/* =========================
+   SYRINGE MEASUREMENT MARKS
+========================= */
 
 .syringe-mark {
     position: absolute;
@@ -100,21 +414,16 @@
     bottom: 0;
 
     width: 18px;
-
     height: 46px;
 
     padding: 0;
-
     margin: 0;
 
     border: none;
-
     border-left: 3px solid #222;
-
     border-radius: 0;
 
     background-color: transparent;
-
     color: #222;
 
     cursor: pointer;
@@ -122,41 +431,34 @@
     z-index: 3;
 }
 
-
 .syringe-mark:hover {
     background-color:
         rgba(0, 0, 0, 0.07);
 }
 
-
 .syringe-mark.major {
     height: 72px;
-
     border-left-width: 4px;
 }
-
 
 .syringe-mark span {
     position: absolute;
 
     bottom: -30px;
-
     left: -8px;
 
     font-size: 14px;
-
     font-weight: bold;
 }
-
-
-/* SELECTED MARK */
 
 .syringe-mark.selected {
     border-left-width: 6px;
 }
 
 
-/* MARK POSITIONS */
+/* =========================
+   SYRINGE MARK POSITIONS
+========================= */
 
 .mark-05 {
     left: 10%;
@@ -195,34 +497,31 @@
 }
 
 .mark-5 {
-    left: calc(100% - 4px);
+    right: -2px;
+    left: auto;
 }
 
 
-/* SYRINGE TIP */
+/* =========================
+   SYRINGE TIP
+========================= */
 
 .syringe-tip-base {
     width: 34px;
-
     height: 38px;
 
     border-top: 4px solid #555;
-
     border-bottom: 4px solid #555;
 
     background-color: white;
 }
 
-
 .syringe-tip {
     width: 70px;
-
     height: 16px;
 
     border-top: 4px solid #555;
-
     border-bottom: 4px solid #555;
-
     border-right: 4px solid #555;
 
     border-radius:
@@ -232,29 +531,69 @@
 }
 
 
-/* LABELS */
+/* =========================
+   SYRINGE LABELS
+========================= */
 
 .syringe-unit {
     margin-top: 5px;
-
     font-weight: bold;
 }
-
 
 #selectedSyringeVolumeText {
     text-align: center;
-
     font-size: 18px;
-
     font-weight: bold;
 }
-
 
 #resetSyringeScoreButton {
     margin-top: 12px;
 }
 
+
+/* =========================
+   DISCLAIMER
+========================= */
+
+.disclaimer-card {
+    border-left: 5px solid #1f4e79;
+}
+
+.disclaimer-card h2 {
+    color: #1f4e79;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .calculator-card {
+        padding: 20px;
+    }
+
+    .practice-buttons {
+        flex-direction: column;
+    }
+
+    .practice-buttons button {
+        width: 100%;
+    }
+
+    .dosing-spoon {
+        justify-content: flex-start;
+    }
 
     .syringe-wrapper {
         justify-content: flex-start;
