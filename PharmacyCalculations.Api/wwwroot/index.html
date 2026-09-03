@@ -307,6 +307,128 @@
 
         </section>
 
+        <!-- ========================= -->
+<!-- DOSING SPOON PRACTICE -->
+<!-- ========================= -->
+
+<section class="calculator-card">
+
+    <h2>
+        Dosing Spoon Practice
+    </h2>
+
+    <p>
+        Practice selecting the correct liquid
+        volume on a dosing spoon.
+    </p>
+
+
+    <div class="device-score-box">
+
+        <strong>Score:</strong>
+
+        <span id="deviceScoreDisplay">
+            0 / 0
+        </span>
+
+    </div>
+
+
+    <div class="device-question">
+
+        <h3>
+            Measure:
+            <span id="targetVolume">
+                --
+            </span>
+            mL
+        </h3>
+
+        <p>
+            Select the correct measurement line
+            on the dosing spoon.
+        </p>
+
+    </div>
+
+
+    <!-- DOSING SPOON VISUAL -->
+
+    <div class="spoon-container">
+
+        <div class="spoon-bowl">
+
+            <div
+                id="spoonLiquid"
+                class="spoon-liquid"
+            >
+            </div>
+
+            <div
+                class="measurement-line line-5"
+                data-volume="5"
+            >
+                <span>5 mL</span>
+            </div>
+
+            <div
+                class="measurement-line line-2-5"
+                data-volume="2.5"
+            >
+                <span>2.5 mL</span>
+            </div>
+
+            <div
+                class="measurement-line line-1"
+                data-volume="1"
+            >
+                <span>1 mL</span>
+            </div>
+
+        </div>
+
+
+        <div class="spoon-handle">
+        </div>
+
+    </div>
+
+
+    <p id="selectedVolumeText">
+        Selected volume: None
+    </p>
+
+
+    <div class="practice-buttons">
+
+        <button id="checkDeviceButton">
+            Check Answer
+        </button>
+
+        <button id="newDeviceProblemButton">
+            New Problem
+        </button>
+
+        <button id="showDeviceAnswerButton">
+            Show Answer
+        </button>
+
+    </div>
+
+
+    <button id="resetDeviceScoreButton">
+        Reset Score
+    </button>
+
+
+    <div
+        id="deviceResult"
+        class="result"
+    >
+    </div>
+
+</section>
+
 
         <!-- ========================= -->
         <!-- EDUCATIONAL DISCLAIMER -->

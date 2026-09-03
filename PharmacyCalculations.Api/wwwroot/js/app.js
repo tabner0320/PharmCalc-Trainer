@@ -28,7 +28,9 @@ convertButton.addEventListener(
     () => {
 
         const value =
-            Number(conversionValue.value);
+            Number(
+                conversionValue.value
+            );
 
         const type =
             conversionType.value;
@@ -174,13 +176,19 @@ calculateDoseButton.addEventListener(
     () => {
 
         const ordered =
-            Number(orderedDose.value);
+            Number(
+                orderedDose.value
+            );
 
         const available =
-            Number(availableDose.value);
+            Number(
+                availableDose.value
+            );
 
         const quantityAvailable =
-            Number(quantity.value);
+            Number(
+                quantity.value
+            );
 
 
         if (
@@ -206,7 +214,7 @@ calculateDoseButton.addEventListener(
 
         doseResult.innerHTML = `
             <strong>Answer:</strong>
-            ${amountToGive}
+            ${amountToGive} tablet(s)
 
             <br><br>
 
@@ -223,7 +231,7 @@ calculateDoseButton.addEventListener(
             <br><br>
 
             =
-            ${amountToGive}
+            ${amountToGive} tablet(s)
         `;
     }
 );
@@ -264,13 +272,19 @@ calculateLiquidButton.addEventListener(
     () => {
 
         const ordered =
-            Number(liquidOrderedDose.value);
+            Number(
+                liquidOrderedDose.value
+            );
 
         const available =
-            Number(liquidAvailableDose.value);
+            Number(
+                liquidAvailableDose.value
+            );
 
         const volume =
-            Number(liquidVolume.value);
+            Number(
+                liquidVolume.value
+            );
 
 
         if (
@@ -355,13 +369,16 @@ const practiceResult =
 
 
 let currentOrderedDose = 0;
+
 let currentAvailableDose = 0;
+
 let currentVolume = 0;
+
 let currentCorrectAnswer = 0;
 
 
 // ===============================
-// GENERATE NEW PROBLEM
+// GENERATE PRACTICE PROBLEM
 // ===============================
 
 function generatePracticeProblem() {
@@ -403,7 +420,6 @@ function generatePracticeProblem() {
             available: 250,
             volume: 5
         }
-
     ];
 
 
@@ -429,8 +445,10 @@ function generatePracticeProblem() {
 
 
     currentCorrectAnswer =
-        (currentOrderedDose /
-            currentAvailableDose) *
+        (
+            currentOrderedDose /
+            currentAvailableDose
+        ) *
         currentVolume;
 
 
@@ -463,14 +481,16 @@ function generatePracticeProblem() {
 
 
 // ===============================
-// CHECK ANSWER
+// CHECK PRACTICE ANSWER
 // ===============================
 
 checkAnswerButton.addEventListener(
     "click",
     () => {
 
-        if (currentCorrectAnswer === 0) {
+        if (
+            currentCorrectAnswer === 0
+        ) {
 
             practiceResult.textContent =
                 "Click New Problem first.";
@@ -480,13 +500,17 @@ checkAnswerButton.addEventListener(
 
 
         const studentAnswer =
-            Number(practiceAnswer.value);
+            Number(
+                practiceAnswer.value
+            );
 
 
         if (
             practiceAnswer.value === "" ||
             studentAnswer < 0 ||
-            Number.isNaN(studentAnswer)
+            Number.isNaN(
+                studentAnswer
+            )
         ) {
 
             practiceResult.textContent =
@@ -496,12 +520,14 @@ checkAnswerButton.addEventListener(
         }
 
 
-        if (
+        const isCorrect =
             Math.abs(
                 studentAnswer -
                 currentCorrectAnswer
-            ) < 0.01
-        ) {
+            ) < 0.01;
+
+
+        if (isCorrect) {
 
             practiceResult.innerHTML = `
                 <strong>Correct!</strong>
@@ -511,6 +537,7 @@ checkAnswerButton.addEventListener(
                 ${studentAnswer} mL
             `;
         }
+
         else {
 
             practiceResult.innerHTML = `
@@ -527,14 +554,16 @@ checkAnswerButton.addEventListener(
 
 
 // ===============================
-// SHOW SOLUTION
+// SHOW PRACTICE SOLUTION
 // ===============================
 
 showSolutionButton.addEventListener(
     "click",
     () => {
 
-        if (currentCorrectAnswer === 0) {
+        if (
+            currentCorrectAnswer === 0
+        ) {
 
             practiceResult.textContent =
                 "Click New Problem first.";
@@ -572,10 +601,414 @@ showSolutionButton.addEventListener(
 
 
 // ===============================
-// NEW PROBLEM
+// NEW PRACTICE PROBLEM
 // ===============================
 
 newProblemButton.addEventListener(
     "click",
     generatePracticeProblem
 );
+
+
+// ===============================
+// DOSING SPOON PRACTICE
+// ===============================
+
+const targetVolume =
+    document.getElementById(
+        "targetVolume"
+    );
+
+const spoonLiquid =
+    document.getElementById(
+        "spoonLiquid"
+    );
+
+const selectedVolumeText =
+    document.getElementById(
+        "selectedVolumeText"
+    );
+
+const checkDeviceButton =
+    document.getElementById(
+        "checkDeviceButton"
+    );
+
+const newDeviceProblemButton =
+    document.getElementById(
+        "newDeviceProblemButton"
+    );
+
+const showDeviceAnswerButton =
+    document.getElementById(
+        "showDeviceAnswerButton"
+    );
+
+const resetDeviceScoreButton =
+    document.getElementById(
+        "resetDeviceScoreButton"
+    );
+
+const deviceResult =
+    document.getElementById(
+        "deviceResult"
+    );
+
+const deviceScoreDisplay =
+    document.getElementById(
+        "deviceScoreDisplay"
+    );
+
+const measurementLines =
+    document.querySelectorAll(
+        ".measurement-line"
+    );
+
+
+let currentTargetVolume = null;
+
+let selectedDeviceVolume = null;
+
+let deviceScoreCorrect = 0;
+
+let deviceScoreAttempts = 0;
+
+let deviceProblemAnswered = false;
+
+
+// ===============================
+// UPDATE DEVICE SCORE
+// ===============================
+
+function updateDeviceScore() {
+
+    deviceScoreDisplay.textContent =
+        `${deviceScoreCorrect} / ` +
+        `${deviceScoreAttempts}`;
+}
+
+
+// ===============================
+// SET SPOON LIQUID LEVEL
+// ===============================
+
+function setSpoonLiquidLevel(
+    volume
+) {
+
+    let liquidHeight = "0%";
+
+
+    if (volume === 1) {
+
+        liquidHeight = "18%";
+    }
+
+    else if (volume === 2.5) {
+
+        liquidHeight = "42%";
+    }
+
+    else if (volume === 5) {
+
+        liquidHeight = "75%";
+    }
+
+
+    spoonLiquid.style.height =
+        liquidHeight;
+}
+
+
+// ===============================
+// CLEAR SELECTED LINES
+// ===============================
+
+function clearSelectedLines() {
+
+    measurementLines.forEach(
+        (line) => {
+
+            line.classList.remove(
+                "selected"
+            );
+        }
+    );
+}
+
+
+// ===============================
+// SELECT MEASUREMENT LINE
+// ===============================
+
+measurementLines.forEach(
+    (line) => {
+
+        line.addEventListener(
+            "click",
+            () => {
+
+                clearSelectedLines();
+
+
+                line.classList.add(
+                    "selected"
+                );
+
+
+                selectedDeviceVolume =
+                    Number(
+                        line.dataset.volume
+                    );
+
+
+                setSpoonLiquidLevel(
+                    selectedDeviceVolume
+                );
+
+
+                selectedVolumeText.textContent =
+                    `Selected volume: ` +
+                    `${selectedDeviceVolume} mL`;
+
+
+                deviceResult.innerHTML = "";
+            }
+        );
+    }
+);
+
+
+// ===============================
+// GENERATE DEVICE PROBLEM
+// ===============================
+
+function generateDeviceProblem() {
+
+    const volumes = [
+        1,
+        2.5,
+        5
+    ];
+
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            volumes.length
+        );
+
+
+    currentTargetVolume =
+        volumes[randomIndex];
+
+
+    targetVolume.textContent =
+        currentTargetVolume;
+
+
+    selectedDeviceVolume = null;
+
+    deviceProblemAnswered = false;
+
+
+    spoonLiquid.style.height =
+        "0%";
+
+
+    selectedVolumeText.textContent =
+        "Selected volume: None";
+
+
+    deviceResult.innerHTML = "";
+
+
+    clearSelectedLines();
+}
+
+
+// ===============================
+// CHECK DEVICE ANSWER
+// ===============================
+
+checkDeviceButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            currentTargetVolume === null
+        ) {
+
+            deviceResult.textContent =
+                "Click New Problem first.";
+
+            return;
+        }
+
+
+        if (
+            selectedDeviceVolume === null
+        ) {
+
+            deviceResult.textContent =
+                "Select a measurement line.";
+
+            return;
+        }
+
+
+        const isCorrect =
+            selectedDeviceVolume ===
+            currentTargetVolume;
+
+
+        if (
+            !deviceProblemAnswered
+        ) {
+
+            deviceScoreAttempts++;
+
+
+            if (isCorrect) {
+
+                deviceScoreCorrect++;
+            }
+
+
+            deviceProblemAnswered = true;
+
+
+            updateDeviceScore();
+        }
+
+
+        if (isCorrect) {
+
+            deviceResult.innerHTML = `
+                <strong>Correct!</strong>
+
+                <br><br>
+
+                You selected
+                ${selectedDeviceVolume} mL.
+            `;
+        }
+
+        else {
+
+            deviceResult.innerHTML = `
+                <strong>Try Again.</strong>
+
+                <br><br>
+
+                Look carefully at the
+                measurement lines.
+            `;
+        }
+    }
+);
+
+
+// ===============================
+// SHOW DEVICE ANSWER
+// ===============================
+
+showDeviceAnswerButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            currentTargetVolume === null
+        ) {
+
+            deviceResult.textContent =
+                "Click New Problem first.";
+
+            return;
+        }
+
+
+        clearSelectedLines();
+
+
+        measurementLines.forEach(
+            (line) => {
+
+                const lineVolume =
+                    Number(
+                        line.dataset.volume
+                    );
+
+
+                if (
+                    lineVolume ===
+                    currentTargetVolume
+                ) {
+
+                    line.classList.add(
+                        "selected"
+                    );
+                }
+            }
+        );
+
+
+        setSpoonLiquidLevel(
+            currentTargetVolume
+        );
+
+
+        selectedVolumeText.textContent =
+            `Correct volume: ` +
+            `${currentTargetVolume} mL`;
+
+
+        deviceResult.innerHTML = `
+            <strong>Answer:</strong>
+
+            <br><br>
+
+            Fill the dosing spoon to the
+            ${currentTargetVolume} mL line.
+        `;
+    }
+);
+
+
+// ===============================
+// NEW DEVICE PROBLEM
+// ===============================
+
+newDeviceProblemButton.addEventListener(
+    "click",
+    generateDeviceProblem
+);
+
+
+// ===============================
+// RESET DEVICE SCORE
+// ===============================
+
+resetDeviceScoreButton.addEventListener(
+    "click",
+    () => {
+
+        deviceScoreCorrect = 0;
+
+        deviceScoreAttempts = 0;
+
+
+        updateDeviceScore();
+
+
+        deviceResult.textContent =
+            "Score reset.";
+    }
+);
+
+
+// ===============================
+// INITIAL DEVICE SCORE
+// ===============================
+
+updateDeviceScore();
