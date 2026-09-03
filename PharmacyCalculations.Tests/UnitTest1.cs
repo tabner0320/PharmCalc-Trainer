@@ -76,7 +76,11 @@ public class ApiTests
                 .ReadFromJsonAsync<CalculationResponse>();
 
         Assert.NotNull(result);
-        Assert.Equal(2, result.AmountToGive);
+
+        Assert.Equal(
+            2,
+            result.AmountToGive
+        );
     }
 
 
@@ -108,7 +112,11 @@ public class ApiTests
                 .ReadFromJsonAsync<CalculationResponse>();
 
         Assert.NotNull(result);
-        Assert.Equal(10, result.AmountToGive);
+
+        Assert.Equal(
+            10,
+            result.AmountToGive
+        );
     }
 
 
@@ -139,9 +147,158 @@ public class ApiTests
                 .ReadFromJsonAsync<ConversionResponse>();
 
         Assert.NotNull(result);
-        Assert.Equal(1000, result.ConvertedValue);
+
+        Assert.Equal(
+            1000,
+            result.ConvertedValue
+        );
     }
 
+
+    // ==========================================
+    // BAD REQUEST TESTS
+    // ==========================================
+
+    [Fact]
+    public async Task TabletEndpoint_ZeroDoseAvailable_ReturnsBadRequest()
+    {
+        await using var application =
+            new WebApplicationFactory<Program>();
+
+        using var client =
+            application.CreateClient();
+
+        var request = new
+        {
+            doseOrdered = 500,
+            doseAvailable = 0,
+            quantityAvailable = 1
+        };
+
+        var response = await client.PostAsJsonAsync(
+            "/api/calculate/tablet",
+            request
+        );
+
+        Assert.Equal(
+            HttpStatusCode.BadRequest,
+            response.StatusCode
+        );
+    }
+
+
+    [Fact]
+    public async Task LiquidEndpoint_ZeroDoseAvailable_ReturnsBadRequest()
+    {
+        await using var application =
+            new WebApplicationFactory<Program>();
+
+        using var client =
+            application.CreateClient();
+
+        var request = new
+        {
+            doseOrdered = 250,
+            doseAvailable = 0,
+            volumeAvailable = 5
+        };
+
+        var response = await client.PostAsJsonAsync(
+            "/api/calculate/liquid",
+            request
+        );
+
+        Assert.Equal(
+            HttpStatusCode.BadRequest,
+            response.StatusCode
+        );
+    }
+
+
+    [Fact]
+    public async Task ConversionEndpoint_InvalidType_ReturnsBadRequest()
+    {
+        await using var application =
+            new WebApplicationFactory<Program>();
+
+        using var client =
+            application.CreateClient();
+
+        var request = new
+        {
+            value = 1,
+            conversionType = "invalid"
+        };
+
+        var response = await client.PostAsJsonAsync(
+            "/api/convert",
+            request
+        );
+
+        Assert.Equal(
+            HttpStatusCode.BadRequest,
+            response.StatusCode
+        );
+    }
+
+
+    [Fact]
+    public async Task ConversionEndpoint_MissingType_ReturnsBadRequest()
+    {
+        await using var application =
+            new WebApplicationFactory<Program>();
+
+        using var client =
+            application.CreateClient();
+
+        var request = new
+        {
+            value = 1,
+            conversionType = ""
+        };
+
+        var response = await client.PostAsJsonAsync(
+            "/api/convert",
+            request
+        );
+
+        Assert.Equal(
+            HttpStatusCode.BadRequest,
+            response.StatusCode
+        );
+    }
+
+
+    [Fact]
+    public async Task ConversionEndpoint_NegativeValue_ReturnsBadRequest()
+    {
+        await using var application =
+            new WebApplicationFactory<Program>();
+
+        using var client =
+            application.CreateClient();
+
+        var request = new
+        {
+            value = -1,
+            conversionType = "g-to-mg"
+        };
+
+        var response = await client.PostAsJsonAsync(
+            "/api/convert",
+            request
+        );
+
+        Assert.Equal(
+            HttpStatusCode.BadRequest,
+            response.StatusCode
+        );
+    }
+
+
+    // ==========================================
+    // RESPONSE MODELS USED BY TESTS
+    // ==========================================
 
     private sealed class HealthResponse
     {
