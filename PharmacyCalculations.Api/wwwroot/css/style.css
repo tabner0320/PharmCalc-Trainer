@@ -1,6 +1,12 @@
-/* =========================
+/* ==========================================
+   PHARMCALC TRAINER
+   style.css
+========================================== */
+
+
+/* ==========================================
    GLOBAL STYLES
-========================= */
+========================================== */
 
 * {
     box-sizing: border-box;
@@ -8,49 +14,73 @@
 
 body {
     margin: 0;
+
     font-family:
         Arial,
         Helvetica,
         sans-serif;
+
     background-color: #f4f7fb;
+
     color: #222;
+
     line-height: 1.6;
 }
 
+
+/* ==========================================
+   HEADER
+========================================== */
+
 header {
-    background-color: #1f4e79;
-    color: white;
-    text-align: center;
     padding: 35px 20px;
+
+    background-color: #1f4e79;
+
+    color: white;
+
+    text-align: center;
 }
 
 header h1 {
     margin: 0;
+
     font-size: 38px;
 }
 
 header p {
     margin-top: 10px;
     margin-bottom: 0;
+
     font-size: 18px;
 }
 
+
+/* ==========================================
+   MAIN PAGE
+========================================== */
+
 main {
     width: 90%;
+
     max-width: 950px;
+
     margin: 35px auto;
 }
 
 
-/* =========================
+/* ==========================================
    CALCULATOR CARDS
-========================= */
+========================================== */
 
 .calculator-card {
-    background-color: white;
     margin-bottom: 30px;
+
     padding: 28px;
+
     border-radius: 12px;
+
+    background-color: white;
 
     box-shadow:
         0 4px 12px
@@ -59,6 +89,7 @@ main {
 
 .calculator-card h2 {
     margin-top: 0;
+
     color: #1f4e79;
 }
 
@@ -67,50 +98,64 @@ main {
 }
 
 
-/* =========================
+/* ==========================================
    LABELS
-========================= */
+========================================== */
 
 label {
     display: block;
+
     margin-top: 18px;
     margin-bottom: 6px;
+
     font-weight: bold;
 }
 
 
-/* =========================
+/* ==========================================
    INPUTS AND SELECTS
-========================= */
+========================================== */
 
 input,
 select {
     width: 100%;
+
     padding: 12px;
+
     border: 1px solid #bbb;
+
     border-radius: 6px;
+
     font-size: 16px;
 }
 
 input:focus,
 select:focus {
     outline: none;
+
     border-color: #1f4e79;
 }
 
 
-/* =========================
+/* ==========================================
    BUTTONS
-========================= */
+========================================== */
 
 button {
     margin-top: 18px;
+
     padding: 11px 18px;
+
     border: none;
+
     border-radius: 6px;
+
     background-color: #1f4e79;
+
     color: white;
+
     font-size: 15px;
+
     cursor: pointer;
 
     transition:
@@ -127,48 +172,62 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    FORMULA DISPLAY
-========================= */
+========================================== */
 
 .formula {
     margin: 18px 0;
+
     padding: 14px;
+
     border-left: 4px solid #1f4e79;
+
     background-color: #eef4fa;
+
     font-weight: bold;
 }
 
 
-/* =========================
-   RESULTS
-========================= */
+/* ==========================================
+   RESULT BOXES
+========================================== */
 
 .result {
-    margin-top: 20px;
-    padding: 14px;
-    border-radius: 6px;
-    background-color: #eef4fa;
     min-height: 20px;
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border-radius: 6px;
+
+    background-color: #eef4fa;
 }
 
 
-/* =========================
+/* ==========================================
    PRACTICE MODE
-========================= */
+========================================== */
 
 .practice-question {
     margin: 20px 0;
+
     padding: 18px;
-    background-color: #f0f6fc;
+
     border-radius: 8px;
+
+    background-color: #f0f6fc;
+
     font-weight: bold;
 }
 
 .practice-buttons {
     display: flex;
-    gap: 10px;
+
     flex-wrap: wrap;
+
+    gap: 10px;
 }
 
 .practice-buttons button {
@@ -176,40 +235,53 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    DEVICE SCORE
-========================= */
+========================================== */
 
 .device-score-box {
-    margin-top: 20px;
-    padding: 12px;
     display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 12px;
+
     border-radius: 6px;
+
     background-color: #eef4fa;
 }
 
 .device-question {
     margin-top: 25px;
+
     text-align: center;
 }
 
 
-/* =========================
+/* ==========================================
    DOSING SPOON PRACTICE
-========================= */
+========================================== */
 
 .spoon-practice-area {
     display: flex;
+
     justify-content: center;
+
     margin: 35px 0;
+
     overflow-x: auto;
 }
 
 .dosing-spoon {
     display: flex;
+
     align-items: center;
+
     min-width: 500px;
 }
+
+
+/* SPOON BOWL */
 
 .spoon-bowl {
     position: relative;
@@ -220,10 +292,14 @@ button:active {
     overflow: hidden;
 
     border: 4px solid #555;
+
     border-radius: 50%;
 
     background-color: white;
 }
+
+
+/* SPOON LIQUID */
 
 .spoon-liquid {
     position: absolute;
@@ -243,6 +319,9 @@ button:active {
     z-index: 1;
 }
 
+
+/* SPOON MEASUREMENT LINES */
+
 .measurement-line {
     position: absolute;
 
@@ -256,9 +335,11 @@ button:active {
 
     border: none;
     border-top: 3px solid #222;
+
     border-radius: 0;
 
     background-color: transparent;
+
     color: #222;
 
     text-align: right;
@@ -275,6 +356,7 @@ button:active {
 
 .measurement-line.selected {
     border-top-width: 6px;
+
     font-weight: bold;
 }
 
@@ -290,6 +372,9 @@ button:active {
     bottom: 82%;
 }
 
+
+/* SPOON HANDLE */
+
 .spoon-handle {
     width: 220px;
     height: 45px;
@@ -297,15 +382,23 @@ button:active {
     margin-left: -10px;
 
     border: 4px solid #555;
+
     border-left: none;
-    border-radius: 0 30px 30px 0;
+
+    border-radius:
+        0 30px 30px 0;
 
     background-color: white;
 }
 
+
+/* SPOON LABELS */
+
 #selectedVolumeText {
     text-align: center;
+
     font-size: 18px;
+
     font-weight: bold;
 }
 
@@ -314,19 +407,23 @@ button:active {
 }
 
 
-/* =========================
-   ORAL SYRINGE
-========================= */
+/* ==========================================
+   ORAL SYRINGE PRACTICE
+========================================== */
 
 .syringe-practice-area {
     margin: 40px 0;
+
     overflow-x: auto;
+
     text-align: center;
 }
 
 .syringe-wrapper {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     min-width: 760px;
@@ -338,15 +435,16 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE PLUNGER
-========================= */
+========================================== */
 
 .syringe-plunger-handle {
     width: 24px;
     height: 90px;
 
     border: 4px solid #555;
+
     border-radius: 5px;
 
     background-color: white;
@@ -363,9 +461,9 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE BARREL
-========================= */
+========================================== */
 
 .syringe-barrel {
     position: relative;
@@ -381,9 +479,9 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE LIQUID
-========================= */
+========================================== */
 
 .syringe-liquid {
     position: absolute;
@@ -404,9 +502,9 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE MEASUREMENT MARKS
-========================= */
+========================================== */
 
 .syringe-mark {
     position: absolute;
@@ -416,14 +514,17 @@ button:active {
     width: 18px;
     height: 46px;
 
-    padding: 0;
     margin: 0;
+    padding: 0;
 
     border: none;
+
     border-left: 3px solid #222;
+
     border-radius: 0;
 
     background-color: transparent;
+
     color: #222;
 
     cursor: pointer;
@@ -438,6 +539,7 @@ button:active {
 
 .syringe-mark.major {
     height: 72px;
+
     border-left-width: 4px;
 }
 
@@ -448,6 +550,7 @@ button:active {
     left: -8px;
 
     font-size: 14px;
+
     font-weight: bold;
 }
 
@@ -456,9 +559,9 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE MARK POSITIONS
-========================= */
+========================================== */
 
 .mark-05 {
     left: 10%;
@@ -498,13 +601,14 @@ button:active {
 
 .mark-5 {
     right: -2px;
+
     left: auto;
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE TIP
-========================= */
+========================================== */
 
 .syringe-tip-base {
     width: 34px;
@@ -531,18 +635,21 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
    SYRINGE LABELS
-========================= */
+========================================== */
 
 .syringe-unit {
     margin-top: 5px;
+
     font-weight: bold;
 }
 
 #selectedSyringeVolumeText {
     text-align: center;
+
     font-size: 18px;
+
     font-weight: bold;
 }
 
@@ -551,9 +658,170 @@ button:active {
 }
 
 
-/* =========================
+/* ==========================================
+   MEDICINE CUP PRACTICE
+========================================== */
+
+.medicine-cup-practice-area {
+    display: flex;
+
+    justify-content: center;
+
+    margin: 40px 0;
+}
+
+
+/* ==========================================
+   MEDICINE CUP
+========================================== */
+
+.medicine-cup {
+    position: relative;
+
+    width: 260px;
+    height: 260px;
+
+    overflow: hidden;
+
+    border: 4px solid #555;
+
+    border-top: 8px solid #555;
+
+    border-radius:
+        25px
+        25px
+        75px
+        75px;
+
+    background-color: white;
+}
+
+
+/* ==========================================
+   MEDICINE CUP LIQUID
+========================================== */
+
+.cup-liquid {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 0%;
+
+    background-color:
+        rgba(100, 160, 220, 0.55);
+
+    transition:
+        height 0.3s ease;
+
+    z-index: 1;
+}
+
+
+/* ==========================================
+   MEDICINE CUP MEASUREMENT LINES
+========================================== */
+
+.cup-mark {
+    position: absolute;
+
+    right: 0;
+
+    width: 120px;
+    height: 30px;
+
+    margin: 0;
+
+    padding:
+        0
+        8px;
+
+    border: none;
+
+    border-top: 3px solid #222;
+
+    border-radius: 0;
+
+    background-color: transparent;
+
+    color: #222;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    z-index: 3;
+}
+
+.cup-mark:hover {
+    background-color:
+        rgba(0, 0, 0, 0.06);
+}
+
+.cup-mark.selected {
+    border-top-width: 6px;
+
+    font-weight: bold;
+}
+
+.cup-mark span {
+    position: relative;
+
+    top: -5px;
+}
+
+
+/* ==========================================
+   MEDICINE CUP MARK POSITIONS
+========================================== */
+
+.cup-mark-5 {
+    bottom: 16%;
+}
+
+.cup-mark-10 {
+    bottom: 32%;
+}
+
+.cup-mark-15 {
+    bottom: 48%;
+}
+
+.cup-mark-20 {
+    bottom: 64%;
+}
+
+.cup-mark-25 {
+    bottom: 80%;
+}
+
+.cup-mark-30 {
+    bottom: 94%;
+}
+
+
+/* ==========================================
+   MEDICINE CUP LABELS
+========================================== */
+
+#selectedCupVolumeText {
+    text-align: center;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+#resetCupScoreButton {
+    margin-top: 12px;
+}
+
+
+/* ==========================================
    DISCLAIMER
-========================= */
+========================================== */
 
 .disclaimer-card {
     border-left: 5px solid #1f4e79;
@@ -564,9 +832,9 @@ button:active {
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* ==========================================
+   MOBILE RESPONSIVE DESIGN
+========================================== */
 
 @media (max-width: 600px) {
 
@@ -574,28 +842,41 @@ button:active {
         font-size: 30px;
     }
 
+
     main {
         width: 94%;
+
         margin: 20px auto;
     }
+
 
     .calculator-card {
         padding: 20px;
     }
 
+
     .practice-buttons {
         flex-direction: column;
     }
+
 
     .practice-buttons button {
         width: 100%;
     }
 
+
     .dosing-spoon {
         justify-content: flex-start;
     }
 
+
     .syringe-wrapper {
         justify-content: flex-start;
+    }
+
+
+    .medicine-cup {
+        width: 230px;
+        height: 230px;
     }
 }

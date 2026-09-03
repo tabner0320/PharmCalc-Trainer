@@ -110,7 +110,7 @@
 
 
         <!-- ========================= -->
-        <!-- TABLET DOSAGE -->
+        <!-- TABLET DOSAGE CALCULATOR -->
         <!-- ========================= -->
 
         <section class="calculator-card">
@@ -494,9 +494,7 @@
                             data-volume="1"
                             aria-label="1 milliliter"
                         >
-                            <span>
-                                1
-                            </span>
+                            <span>1</span>
                         </button>
 
                         <button
@@ -511,9 +509,7 @@
                             data-volume="2"
                             aria-label="2 milliliters"
                         >
-                            <span>
-                                2
-                            </span>
+                            <span>2</span>
                         </button>
 
                         <button
@@ -528,9 +524,7 @@
                             data-volume="3"
                             aria-label="3 milliliters"
                         >
-                            <span>
-                                3
-                            </span>
+                            <span>3</span>
                         </button>
 
                         <button
@@ -545,9 +539,7 @@
                             data-volume="4"
                             aria-label="4 milliliters"
                         >
-                            <span>
-                                4
-                            </span>
+                            <span>4</span>
                         </button>
 
                         <button
@@ -562,9 +554,7 @@
                             data-volume="5"
                             aria-label="5 milliliters"
                         >
-                            <span>
-                                5
-                            </span>
+                            <span>5</span>
                         </button>
 
                     </div>
@@ -609,6 +599,139 @@
 
             <div
                 id="syringeResult"
+                class="result"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- MEDICINE CUP PRACTICE -->
+        <!-- ========================= -->
+
+        <section class="calculator-card">
+
+            <h2>
+                Medicine Cup Practice
+            </h2>
+
+            <p>
+                Practice selecting the correct volume
+                on a 30 mL medicine cup.
+            </p>
+
+            <div class="device-score-box">
+
+                <strong>
+                    Score:
+                </strong>
+
+                <span id="cupScoreDisplay">
+                    0 / 0
+                </span>
+
+            </div>
+
+            <div class="device-question">
+
+                <h3>
+                    Measure:
+                    <span id="cupTargetVolume">
+                        --
+                    </span>
+                    mL
+                </h3>
+
+                <p>
+                    Click the correct measurement line
+                    on the medicine cup.
+                </p>
+
+            </div>
+
+            <div class="medicine-cup-practice-area">
+
+                <div class="medicine-cup">
+
+                    <div
+                        id="cupLiquid"
+                        class="cup-liquid"
+                    >
+                    </div>
+
+                    <button
+                        class="cup-mark cup-mark-5"
+                        data-volume="5"
+                    >
+                        <span>5 mL</span>
+                    </button>
+
+                    <button
+                        class="cup-mark cup-mark-10"
+                        data-volume="10"
+                    >
+                        <span>10 mL</span>
+                    </button>
+
+                    <button
+                        class="cup-mark cup-mark-15"
+                        data-volume="15"
+                    >
+                        <span>15 mL</span>
+                    </button>
+
+                    <button
+                        class="cup-mark cup-mark-20"
+                        data-volume="20"
+                    >
+                        <span>20 mL</span>
+                    </button>
+
+                    <button
+                        class="cup-mark cup-mark-25"
+                        data-volume="25"
+                    >
+                        <span>25 mL</span>
+                    </button>
+
+                    <button
+                        class="cup-mark cup-mark-30"
+                        data-volume="30"
+                    >
+                        <span>30 mL</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <p id="selectedCupVolumeText">
+                Selected volume: None
+            </p>
+
+            <div class="practice-buttons">
+
+                <button id="checkCupButton">
+                    Check Answer
+                </button>
+
+                <button id="newCupProblemButton">
+                    New Problem
+                </button>
+
+                <button id="showCupAnswerButton">
+                    Show Answer
+                </button>
+
+            </div>
+
+            <button id="resetCupScoreButton">
+                Reset Score
+            </button>
+
+            <div
+                id="cupResult"
                 class="result"
             >
             </div>
