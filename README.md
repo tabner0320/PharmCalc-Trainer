@@ -1,4 +1,4 @@
-# 💊 PharmCalc Trainer
+# PharmCalc Trainer
 
 **PharmCalc Trainer** is an educational pharmacy calculation practice application built with **C#, ASP.NET Core, HTML, CSS, and JavaScript**.
 
@@ -6,7 +6,7 @@ The application provides interactive tools and practice exercises for learning c
 
 ---
 
-## 📖 Overview
+## Overview
 
 PharmCalc Trainer was created as a software development portfolio project that combines an **ASP.NET Core backend** with an interactive **HTML, CSS, and JavaScript frontend**.
 
@@ -24,9 +24,9 @@ The project demonstrates:
 
 ---
 
-## ✨ Features
+## Features
 
-### 🔢 Metric Conversion
+### Metric Conversion
 
 Practice common pharmacy-related metric conversions:
 
@@ -39,7 +39,7 @@ Practice common pharmacy-related metric conversions:
 
 ---
 
-### 💊 Tablet Dosage Calculator
+### Tablet Dosage Calculator
 
 Calculates the number of tablets required using:
 
@@ -60,7 +60,7 @@ Quantity Available: 1 tablet
 
 ---
 
-### 🧴 Liquid Medication Calculator
+### Liquid Medication Calculator
 
 Calculates the volume of liquid medication using:
 
@@ -81,7 +81,7 @@ Volume Available: 5 mL
 
 ---
 
-### 🧠 Practice Mode
+### Practice Mode
 
 Generates random liquid medication calculation problems.
 
@@ -96,7 +96,7 @@ This allows users to practice calculations without manually entering a problem e
 
 ---
 
-### 🥄 Dosing Spoon Practice
+### Dosing Spoon Practice
 
 Provides an interactive dosing spoon exercise.
 
@@ -120,7 +120,7 @@ Current practice measurements include:
 
 ---
 
-### 💉 Oral Syringe Practice
+### Oral Syringe Practice
 
 Provides an interactive **5 mL oral syringe** for practicing measurement selection.
 
@@ -151,7 +151,7 @@ The exercise includes:
 
 ---
 
-### 🥤 Medicine Cup Practice
+### Medicine Cup Practice
 
 Provides an interactive **30 mL medicine cup** exercise.
 
@@ -178,7 +178,7 @@ Users can:
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 | Category | Technology |
 |---|---|
@@ -194,7 +194,7 @@ Users can:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 PharmCalc Trainer/
@@ -230,7 +230,7 @@ PharmCalc Trainer/
 
 ---
 
-## 🌐 API
+## API
 
 The ASP.NET Core application includes a health endpoint:
 
@@ -250,7 +250,7 @@ This endpoint can be used to verify that the ASP.NET Core application is running
 
 ---
 
-## ▶️ Running the Project
+## Running the Project
 
 ### 1. Clone the repository
 
@@ -296,7 +296,7 @@ Open the localhost address displayed in the terminal.
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 From the project root, run:
 
@@ -312,7 +312,7 @@ PharmacyCalculations.Tests
 
 ---
 
-## 💡 Skills Demonstrated
+## Skills Demonstrated
 
 This project demonstrates experience with:
 
@@ -335,7 +335,7 @@ This project demonstrates experience with:
 
 ---
 
-## 🚀 Planned Improvements
+## Planned Improvements
 
 Future improvements may include:
 
@@ -352,7 +352,7 @@ Future improvements may include:
 
 ---
 
-## ⚠️ Educational Use Only
+## Educational Use Only
 
 **PharmCalc Trainer is intended for pharmaceutical calculation practice and education only.**
 
@@ -362,7 +362,7 @@ The application should not be used to make real-world patient-specific medicatio
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Theophilus M. Abner Jr.**
 
@@ -370,7 +370,7 @@ Aspiring Software Developer and IT Professional focused on **C#, .NET, ASP.NET C
 
 ---
 
-## 📌 Project Purpose
+## Project Purpose
 
 PharmCalc Trainer was developed as a portfolio project to demonstrate how programming concepts can be applied to an interactive educational application.
 
