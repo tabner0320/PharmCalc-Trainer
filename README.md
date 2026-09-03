@@ -1,18 +1,34 @@
-# PharmCalc Trainer
+# 💊 PharmCalc Trainer
 
-PharmCalc Trainer is a web-based pharmaceutical calculations practice application built with **C#**, **ASP.NET Core**, **JavaScript**, **HTML**, and **CSS**.
+**PharmCalc Trainer** is an educational pharmacy calculation practice application built with **C#, ASP.NET Core, HTML, CSS, and JavaScript**.
 
-The application is designed to help students practice common pharmacy math skills such as metric conversions, tablet dosage calculations, liquid medication calculations, and interactive practice questions.
-
-> **Educational Use Only:** This application is intended for learning and practice. It should not be used as a substitute for professional clinical judgment, medication verification, or an approved pharmacy reference.
+The application provides interactive tools and practice exercises for learning common pharmaceutical calculations and medication measurement concepts.
 
 ---
 
-## Features
+## 📖 Overview
 
-### Metric Conversion Calculator
+PharmCalc Trainer was created as a software development portfolio project that combines an **ASP.NET Core backend** with an interactive **HTML, CSS, and JavaScript frontend**.
 
-Practice common pharmaceutical metric conversions, including:
+The project demonstrates:
+
+- C# and .NET development
+- ASP.NET Core web application development
+- JavaScript event handling
+- DOM manipulation
+- Mathematical calculation logic
+- Interactive user interfaces
+- Responsive web design
+- Automated testing
+- Git and GitHub version control
+
+---
+
+## ✨ Features
+
+### 🔢 Metric Conversion
+
+Practice common pharmacy-related metric conversions:
 
 - Grams to milligrams
 - Milligrams to grams
@@ -21,13 +37,11 @@ Practice common pharmaceutical metric conversions, including:
 - Liters to milliliters
 - Milliliters to liters
 
-The application also displays the calculation steps so students can see how the answer was determined.
-
 ---
 
-### Tablet Dosage Calculator
+### 💊 Tablet Dosage Calculator
 
-The tablet calculator uses the formula:
+Calculates the number of tablets required using:
 
 ```text
 Amount to Give =
@@ -37,22 +51,18 @@ Dose Ordered ÷ Dose Available × Quantity Available
 Example:
 
 ```text
-Dose Ordered:       500 mg
-Dose Available:     250 mg
+Dose Ordered: 500 mg
+Dose Available: 250 mg
 Quantity Available: 1 tablet
-```
 
-Calculation:
-
-```text
 500 ÷ 250 × 1 = 2 tablets
 ```
 
 ---
 
-### Liquid Medication Calculator
+### 🧴 Liquid Medication Calculator
 
-The liquid medication calculator uses:
+Calculates the volume of liquid medication using:
 
 ```text
 Amount to Give =
@@ -62,81 +72,145 @@ Dose Ordered ÷ Dose Available × Volume Available
 Example:
 
 ```text
-Dose Ordered:     250 mg
-Dose Available:   125 mg
+Dose Ordered: 250 mg
+Dose Available: 125 mg
 Volume Available: 5 mL
-```
 
-Calculation:
-
-```text
 250 ÷ 125 × 5 = 10 mL
 ```
 
 ---
 
-## Practice Mode
+### 🧠 Practice Mode
 
-PharmCalc Trainer includes an interactive Practice Mode.
+Generates random liquid medication calculation problems.
 
-Students can choose between:
-
-- Metric Conversion
-- Tablet Dosage
-- Liquid Medication
-
-Practice Mode allows the student to:
+Users can:
 
 - Generate a new problem
 - Enter an answer
 - Check the answer
-- Try again if incorrect
-- Reveal the solution
-- Track a running score
+- View the complete solution
+
+This allows users to practice calculations without manually entering a problem each time.
+
+---
+
+### 🥄 Dosing Spoon Practice
+
+Provides an interactive dosing spoon exercise.
+
+Users can:
+
+- Generate a random target volume
+- Select a measurement line
+- See the simulated liquid level
+- Check their answer
+- Show the correct answer
+- Track correct answers and attempts
 - Reset the score
 
-Example:
+Current practice measurements include:
 
 ```text
-Dose Ordered:     300 mg
-Dose Available:   150 mg
-Volume Available: 5 mL
-
-How many mL should be administered?
-```
-
-Solution:
-
-```text
-300 ÷ 150 × 5 = 10 mL
+1 mL
+2.5 mL
+5 mL
 ```
 
 ---
 
-## Technologies Used
+### 💉 Oral Syringe Practice
+
+Provides an interactive **5 mL oral syringe** for practicing measurement selection.
+
+Users can select measurements in **0.5 mL increments**:
+
+```text
+0.5 mL
+1 mL
+1.5 mL
+2 mL
+2.5 mL
+3 mL
+3.5 mL
+4 mL
+4.5 mL
+5 mL
+```
+
+The exercise includes:
+
+- Random measurement problems
+- Interactive syringe measurement marks
+- Visual liquid fill
+- Answer checking
+- Show Answer
+- Score tracking
+- Score reset
+
+---
+
+### 🥤 Medicine Cup Practice
+
+Provides an interactive **30 mL medicine cup** exercise.
+
+Current practice measurements include:
+
+```text
+5 mL
+10 mL
+15 mL
+20 mL
+25 mL
+30 mL
+```
+
+Users can:
+
+- Generate a random target volume
+- Select a measurement line
+- See the cup fill visually
+- Check the selected measurement
+- Display the correct answer
+- Track correct answers and attempts
+- Reset the score
+
+---
+
+## 🛠️ Technologies Used
 
 | Category | Technology |
 |---|---|
 | Language | C# |
-| Framework | .NET 10 |
-| Backend | ASP.NET Core |
-| Frontend | HTML5, CSS3, Vanilla JavaScript |
-| Web Hosting | ASP.NET Core Static Files |
+| Framework | .NET / ASP.NET Core |
+| Frontend | HTML5 |
+| Styling | CSS3 |
+| Client-Side Logic | JavaScript |
 | Testing | xUnit |
-| Version Control | Git & GitHub |
-| Editor | Visual Studio Code |
+| Version Control | Git |
+| Repository Hosting | GitHub |
+| Development Environment | Visual Studio Code |
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
-PharmCalc-Trainer/
+PharmCalc Trainer/
+│
+├── PharmacyCalculations.slnx
+├── README.md
+├── .gitignore
 │
 ├── PharmacyCalculations.Api/
 │   │
 │   ├── Program.cs
 │   ├── PharmacyCalculations.Api.csproj
+│   ├── appsettings.json
+│   ├── appsettings.Development.json
+│   │
+│   ├── Properties/
 │   │
 │   └── wwwroot/
 │       │
@@ -148,38 +222,17 @@ PharmCalc-Trainer/
 │       └── js/
 │           └── app.js
 │
-├── PharmacyCalculations.Tests/
-│   ├── PharmacyCalculations.Tests.csproj
-│   └── UnitTest1.cs
-│
-├── PharmacyCalculations.slnx
-├── .gitignore
-└── README.md
+└── PharmacyCalculations.Tests/
+    │
+    ├── PharmacyCalculations.Tests.csproj
+    └── UnitTest1.cs
 ```
 
 ---
 
-## How the Application Works
+## 🌐 API
 
-ASP.NET Core hosts the website and serves the frontend files from the `wwwroot` directory.
-
-The basic flow is:
-
-```text
-Browser
-   ↓
-index.html
-   ↓
-JavaScript
-   ↓
-Calculation Logic
-   ↓
-Result + Explanation
-```
-
-The application currently performs its calculation logic in JavaScript on the client side.
-
-The ASP.NET Core backend also exposes a simple health endpoint:
+The ASP.NET Core application includes a health endpoint:
 
 ```http
 GET /api/health
@@ -193,51 +246,57 @@ Example response:
 }
 ```
 
+This endpoint can be used to verify that the ASP.NET Core application is running successfully.
+
 ---
 
-## Running the Project
+## ▶️ Running the Project
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/tabner0320/PharmCalc-Trainer.git
 ```
 
-Move into the project folder:
+### 2. Enter the project directory
+
+Because the folder name contains spaces:
 
 ```bash
-cd PharmCalc-Trainer
+cd "PharmCalc Trainer"
 ```
 
-Restore the project dependencies:
+### 3. Restore dependencies
 
 ```bash
 dotnet restore
 ```
 
-Build the solution:
+### 4. Build the solution
 
 ```bash
 dotnet build
 ```
 
-Run the application:
+### 5. Run the application
+
+From the project root:
 
 ```bash
 dotnet run --project PharmacyCalculations.Api
 ```
 
-The terminal will display a local address similar to:
+You can also run the project using:
 
-```text
-http://localhost:5137
+```bash
+dotnet run --project PharmacyCalculations.Api/PharmacyCalculations.Api.csproj
 ```
 
-Open that address in your browser.
+Open the localhost address displayed in the terminal.
 
 ---
 
-## Running Tests
+## 🧪 Running Tests
 
 From the project root, run:
 
@@ -245,66 +304,74 @@ From the project root, run:
 dotnet test
 ```
 
-The project includes an xUnit test project that can be expanded as additional calculation features are added.
+This builds and runs the tests contained in:
+
+```text
+PharmacyCalculations.Tests
+```
 
 ---
 
-## Skills Demonstrated
+## 💡 Skills Demonstrated
 
-This project demonstrates practical experience with:
+This project demonstrates experience with:
 
 - C#
 - .NET
 - ASP.NET Core
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
 - DOM manipulation
 - Event listeners
-- Mathematical calculations
 - Input validation
+- Mathematical calculations
+- Interactive UI development
 - Responsive web design
-- xUnit
+- xUnit testing
 - Git
 - GitHub
-- Full-stack project organization
+- Full-stack application structure
 
 ---
 
-## Planned Improvements
+## 🚀 Planned Improvements
 
-Future versions may include:
+Future improvements may include:
 
-- Dosing spoon practice
-- Oral syringe measurement practice
-- Medicine cup measurement practice
-- Percentage strength calculations
-- Ratio and proportion practice
-- Dilution calculations
-- IV flow-rate practice
-- Additional metric conversion questions
-- More advanced Practice Mode questions
-- Score percentages
-- Quiz history
-- Backend calculation APIs
-- Automated tests for calculation logic
-- Database support for saved quiz results
-- User accounts and progress tracking
+- Additional pharmacy calculation categories
+- Expanded practice problem banks
+- Combined measurement-device practice mode
+- Practice score tracking
+- Difficulty levels
+- More detailed solution explanations
+- Additional automated tests
+- Improved mobile responsiveness
+- Accessibility improvements
+- Enhanced visual measurement devices
 
 ---
 
-## Educational Disclaimer
+## ⚠️ Educational Use Only
 
-PharmCalc Trainer is intended strictly for educational and pharmaceutical calculation practice purposes.
+**PharmCalc Trainer is intended for pharmaceutical calculation practice and education only.**
 
-It is not intended to diagnose, prescribe, recommend medication doses, replace clinical judgment, or serve as a substitute for a licensed pharmacist, healthcare professional, instructor, or approved medication reference.
+It is not a substitute for professional clinical judgment, medication verification, institutional policies, or an approved pharmacy reference.
 
-Always verify real-world medication calculations using approved clinical resources and professional guidance.
+The application should not be used to make real-world patient-specific medication or dosing decisions.
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Theophilus M. Abner Jr.**
 
-Aspiring Software Developer and IT Professional focused on C#, .NET, ASP.NET Core, JavaScript, APIs, cloud technologies, and practical full-stack application development.
+Aspiring Software Developer and IT Professional focused on **C#, .NET, ASP.NET Core, JavaScript, APIs, cloud technologies, and practical full-stack application development**.
+
+---
+
+## 📌 Project Purpose
+
+PharmCalc Trainer was developed as a portfolio project to demonstrate how programming concepts can be applied to an interactive educational application.
+
+The project combines backend development, frontend development, mathematical logic, user interaction, responsive design, testing, and version control in a single .NET application.
