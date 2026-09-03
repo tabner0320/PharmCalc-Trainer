@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -101,7 +102,7 @@
 
 
         <!-- ========================= -->
-        <!-- TABLET DOSAGE CALCULATOR -->
+        <!-- TABLET DOSAGE -->
         <!-- ========================= -->
 
         <section class="calculator-card">
@@ -307,127 +308,313 @@
 
         </section>
 
+
         <!-- ========================= -->
-<!-- DOSING SPOON PRACTICE -->
-<!-- ========================= -->
+        <!-- DOSING SPOON PRACTICE -->
+        <!-- ========================= -->
 
-<section class="calculator-card">
+        <section class="calculator-card">
 
-    <h2>
-        Dosing Spoon Practice
-    </h2>
+            <h2>
+                Dosing Spoon Practice
+            </h2>
 
-    <p>
-        Practice selecting the correct liquid
-        volume on a dosing spoon.
-    </p>
-
-
-    <div class="device-score-box">
-
-        <strong>Score:</strong>
-
-        <span id="deviceScoreDisplay">
-            0 / 0
-        </span>
-
-    </div>
+            <p>
+                Practice selecting the correct liquid
+                volume on a dosing spoon.
+            </p>
 
 
-    <div class="device-question">
+            <div class="device-score-box">
 
-        <h3>
-            Measure:
-            <span id="targetVolume">
-                --
-            </span>
-            mL
-        </h3>
+                <strong>Score:</strong>
 
-        <p>
-            Select the correct measurement line
-            on the dosing spoon.
-        </p>
+                <span id="deviceScoreDisplay">
+                    0 / 0
+                </span>
 
-    </div>
+            </div>
 
 
-    <!-- DOSING SPOON VISUAL -->
+            <div class="device-question">
 
-    <div class="spoon-container">
+                <h3>
+                    Measure:
+                    <span id="targetVolume">
+                        --
+                    </span>
+                    mL
+                </h3>
 
-        <div class="spoon-bowl">
+                <p>
+                    Select the correct measurement line
+                    on the dosing spoon.
+                </p>
+
+            </div>
+
+
+            <div class="spoon-container">
+
+                <div class="spoon-bowl">
+
+                    <div
+                        id="spoonLiquid"
+                        class="spoon-liquid"
+                    >
+                    </div>
+
+
+                    <div
+                        class="measurement-line line-5"
+                        data-volume="5"
+                    >
+                        <span>5 mL</span>
+                    </div>
+
+
+                    <div
+                        class="measurement-line line-2-5"
+                        data-volume="2.5"
+                    >
+                        <span>2.5 mL</span>
+                    </div>
+
+
+                    <div
+                        class="measurement-line line-1"
+                        data-volume="1"
+                    >
+                        <span>1 mL</span>
+                    </div>
+
+                </div>
+
+
+                <div class="spoon-handle">
+                </div>
+
+            </div>
+
+
+            <p id="selectedVolumeText">
+                Selected volume: None
+            </p>
+
+
+            <div class="practice-buttons">
+
+                <button id="checkDeviceButton">
+                    Check Answer
+                </button>
+
+                <button id="newDeviceProblemButton">
+                    New Problem
+                </button>
+
+                <button id="showDeviceAnswerButton">
+                    Show Answer
+                </button>
+
+            </div>
+
+
+            <button id="resetDeviceScoreButton">
+                Reset Score
+            </button>
+
 
             <div
-                id="spoonLiquid"
-                class="spoon-liquid"
+                id="deviceResult"
+                class="result"
             >
             </div>
 
-            <div
-                class="measurement-line line-5"
-                data-volume="5"
-            >
-                <span>5 mL</span>
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- ORAL SYRINGE PRACTICE -->
+        <!-- ========================= -->
+
+        <section class="calculator-card">
+
+            <h2>
+                Oral Syringe Practice
+            </h2>
+
+            <p>
+                Practice selecting the correct volume
+                on a 5 mL oral syringe.
+            </p>
+
+
+            <div class="device-score-box">
+
+                <strong>Score:</strong>
+
+                <span id="syringeScoreDisplay">
+                    0 / 0
+                </span>
+
             </div>
 
-            <div
-                class="measurement-line line-2-5"
-                data-volume="2.5"
-            >
-                <span>2.5 mL</span>
+
+            <div class="device-question">
+
+                <h3>
+                    Measure:
+                    <span id="syringeTargetVolume">
+                        --
+                    </span>
+                    mL
+                </h3>
+
+                <p>
+                    Click the correct measurement mark
+                    on the syringe.
+                </p>
+
             </div>
 
-            <div
-                class="measurement-line line-1"
-                data-volume="1"
-            >
-                <span>1 mL</span>
+
+            <div class="syringe-practice-area">
+
+                <div class="syringe">
+
+                    <div class="syringe-plunger">
+                    </div>
+
+
+                    <div class="syringe-barrel">
+
+                        <div
+                            id="syringeLiquid"
+                            class="syringe-liquid"
+                        >
+                        </div>
+
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="0.5"
+                        >
+                            0.5
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="1"
+                        >
+                            1
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="1.5"
+                        >
+                            1.5
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="2"
+                        >
+                            2
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="2.5"
+                        >
+                            2.5
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="3"
+                        >
+                            3
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="3.5"
+                        >
+                            3.5
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="4"
+                        >
+                            4
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="4.5"
+                        >
+                            4.5
+                        </button>
+
+                        <button
+                            class="syringe-mark"
+                            data-volume="5"
+                        >
+                            5
+                        </button>
+
+                    </div>
+
+
+                    <div class="syringe-tip">
+                    </div>
+
+                </div>
+
+
+                <p class="syringe-label">
+                    mL
+                </p>
+
             </div>
 
-        </div>
+
+            <p id="selectedSyringeVolumeText">
+                Selected volume: None
+            </p>
 
 
-        <div class="spoon-handle">
-        </div>
+            <div class="practice-buttons">
 
-    </div>
+                <button id="checkSyringeButton">
+                    Check Answer
+                </button>
 
+                <button id="newSyringeProblemButton">
+                    New Problem
+                </button>
 
-    <p id="selectedVolumeText">
-        Selected volume: None
-    </p>
+                <button id="showSyringeAnswerButton">
+                    Show Answer
+                </button>
 
-
-    <div class="practice-buttons">
-
-        <button id="checkDeviceButton">
-            Check Answer
-        </button>
-
-        <button id="newDeviceProblemButton">
-            New Problem
-        </button>
-
-        <button id="showDeviceAnswerButton">
-            Show Answer
-        </button>
-
-    </div>
+            </div>
 
 
-    <button id="resetDeviceScoreButton">
-        Reset Score
-    </button>
+            <button id="resetSyringeScoreButton">
+                Reset Score
+            </button>
 
 
-    <div
-        id="deviceResult"
-        class="result"
-    >
-    </div>
+            <div
+                id="syringeResult"
+                class="result"
+            >
+            </div>
 
-</section>
+        </section>
 
 
         <!-- ========================= -->
@@ -461,4 +648,5 @@
     <script src="js/app.js"></script>
 
 </body>
+
 </html>

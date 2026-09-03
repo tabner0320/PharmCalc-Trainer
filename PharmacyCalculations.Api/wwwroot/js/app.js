@@ -377,10 +377,6 @@ let currentVolume = 0;
 let currentCorrectAnswer = 0;
 
 
-// ===============================
-// GENERATE PRACTICE PROBLEM
-// ===============================
-
 function generatePracticeProblem() {
 
     const problems = [
@@ -480,10 +476,6 @@ function generatePracticeProblem() {
 }
 
 
-// ===============================
-// CHECK PRACTICE ANSWER
-// ===============================
-
 checkAnswerButton.addEventListener(
     "click",
     () => {
@@ -520,14 +512,12 @@ checkAnswerButton.addEventListener(
         }
 
 
-        const isCorrect =
+        if (
             Math.abs(
                 studentAnswer -
                 currentCorrectAnswer
-            ) < 0.01;
-
-
-        if (isCorrect) {
+            ) < 0.01
+        ) {
 
             practiceResult.innerHTML = `
                 <strong>Correct!</strong>
@@ -552,10 +542,6 @@ checkAnswerButton.addEventListener(
     }
 );
 
-
-// ===============================
-// SHOW PRACTICE SOLUTION
-// ===============================
 
 showSolutionButton.addEventListener(
     "click",
@@ -599,10 +585,6 @@ showSolutionButton.addEventListener(
     }
 );
 
-
-// ===============================
-// NEW PRACTICE PROBLEM
-// ===============================
 
 newProblemButton.addEventListener(
     "click",
@@ -676,10 +658,6 @@ let deviceScoreAttempts = 0;
 let deviceProblemAnswered = false;
 
 
-// ===============================
-// UPDATE DEVICE SCORE
-// ===============================
-
 function updateDeviceScore() {
 
     deviceScoreDisplay.textContent =
@@ -687,10 +665,6 @@ function updateDeviceScore() {
         `${deviceScoreAttempts}`;
 }
 
-
-// ===============================
-// SET SPOON LIQUID LEVEL
-// ===============================
 
 function setSpoonLiquidLevel(
     volume
@@ -720,10 +694,6 @@ function setSpoonLiquidLevel(
 }
 
 
-// ===============================
-// CLEAR SELECTED LINES
-// ===============================
-
 function clearSelectedLines() {
 
     measurementLines.forEach(
@@ -736,10 +706,6 @@ function clearSelectedLines() {
     );
 }
 
-
-// ===============================
-// SELECT MEASUREMENT LINE
-// ===============================
 
 measurementLines.forEach(
     (line) => {
@@ -778,10 +744,6 @@ measurementLines.forEach(
     }
 );
 
-
-// ===============================
-// GENERATE DEVICE PROBLEM
-// ===============================
 
 function generateDeviceProblem() {
 
@@ -826,10 +788,6 @@ function generateDeviceProblem() {
     clearSelectedLines();
 }
 
-
-// ===============================
-// CHECK DEVICE ANSWER
-// ===============================
 
 checkDeviceButton.addEventListener(
     "click",
@@ -909,10 +867,6 @@ checkDeviceButton.addEventListener(
 );
 
 
-// ===============================
-// SHOW DEVICE ANSWER
-// ===============================
-
 showDeviceAnswerButton.addEventListener(
     "click",
     () => {
@@ -975,19 +929,11 @@ showDeviceAnswerButton.addEventListener(
 );
 
 
-// ===============================
-// NEW DEVICE PROBLEM
-// ===============================
-
 newDeviceProblemButton.addEventListener(
     "click",
     generateDeviceProblem
 );
 
-
-// ===============================
-// RESET DEVICE SCORE
-// ===============================
 
 resetDeviceScoreButton.addEventListener(
     "click",
@@ -1007,8 +953,400 @@ resetDeviceScoreButton.addEventListener(
 );
 
 
+updateDeviceScore();
+
+
 // ===============================
-// INITIAL DEVICE SCORE
+// ORAL SYRINGE PRACTICE
 // ===============================
 
-updateDeviceScore();
+const syringeTargetVolume =
+    document.getElementById(
+        "syringeTargetVolume"
+    );
+
+const syringeLiquid =
+    document.getElementById(
+        "syringeLiquid"
+    );
+
+const selectedSyringeVolumeText =
+    document.getElementById(
+        "selectedSyringeVolumeText"
+    );
+
+const checkSyringeButton =
+    document.getElementById(
+        "checkSyringeButton"
+    );
+
+const newSyringeProblemButton =
+    document.getElementById(
+        "newSyringeProblemButton"
+    );
+
+const showSyringeAnswerButton =
+    document.getElementById(
+        "showSyringeAnswerButton"
+    );
+
+const resetSyringeScoreButton =
+    document.getElementById(
+        "resetSyringeScoreButton"
+    );
+
+const syringeResult =
+    document.getElementById(
+        "syringeResult"
+    );
+
+const syringeScoreDisplay =
+    document.getElementById(
+        "syringeScoreDisplay"
+    );
+
+const syringeMarks =
+    document.querySelectorAll(
+        ".syringe-mark"
+    );
+
+
+let currentSyringeTarget = null;
+
+let selectedSyringeVolume = null;
+
+let syringeScoreCorrect = 0;
+
+let syringeScoreAttempts = 0;
+
+let syringeProblemAnswered = false;
+
+
+// ===============================
+// SYRINGE SCORE
+// ===============================
+
+function updateSyringeScore() {
+
+    syringeScoreDisplay.textContent =
+        `${syringeScoreCorrect} / ` +
+        `${syringeScoreAttempts}`;
+}
+
+
+// ===============================
+// SET SYRINGE LIQUID
+// ===============================
+
+function setSyringeLiquidLevel(
+    volume
+) {
+
+    const percentage =
+        (volume / 5) * 100;
+
+
+    syringeLiquid.style.width =
+        `${percentage}%`;
+}
+
+
+// ===============================
+// CLEAR SYRINGE MARKS
+// ===============================
+
+function clearSyringeMarks() {
+
+    syringeMarks.forEach(
+        (mark) => {
+
+            mark.classList.remove(
+                "selected"
+            );
+        }
+    );
+}
+
+
+// ===============================
+// SELECT SYRINGE MARK
+// ===============================
+
+syringeMarks.forEach(
+    (mark) => {
+
+        mark.addEventListener(
+            "click",
+            () => {
+
+                clearSyringeMarks();
+
+
+                mark.classList.add(
+                    "selected"
+                );
+
+
+                selectedSyringeVolume =
+                    Number(
+                        mark.dataset.volume
+                    );
+
+
+                setSyringeLiquidLevel(
+                    selectedSyringeVolume
+                );
+
+
+                selectedSyringeVolumeText.textContent =
+                    `Selected volume: ` +
+                    `${selectedSyringeVolume} mL`;
+
+
+                syringeResult.innerHTML = "";
+            }
+        );
+    }
+);
+
+
+// ===============================
+// GENERATE SYRINGE PROBLEM
+// ===============================
+
+function generateSyringeProblem() {
+
+    const volumes = [
+        0.5,
+        1,
+        1.5,
+        2,
+        2.5,
+        3,
+        3.5,
+        4,
+        4.5,
+        5
+    ];
+
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            volumes.length
+        );
+
+
+    currentSyringeTarget =
+        volumes[randomIndex];
+
+
+    syringeTargetVolume.textContent =
+        currentSyringeTarget;
+
+
+    selectedSyringeVolume = null;
+
+    syringeProblemAnswered = false;
+
+
+    syringeLiquid.style.width =
+        "0%";
+
+
+    selectedSyringeVolumeText.textContent =
+        "Selected volume: None";
+
+
+    syringeResult.innerHTML = "";
+
+
+    clearSyringeMarks();
+}
+
+
+// ===============================
+// CHECK SYRINGE ANSWER
+// ===============================
+
+checkSyringeButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            currentSyringeTarget === null
+        ) {
+
+            syringeResult.textContent =
+                "Click New Problem first.";
+
+            return;
+        }
+
+
+        if (
+            selectedSyringeVolume === null
+        ) {
+
+            syringeResult.textContent =
+                "Select a measurement mark.";
+
+            return;
+        }
+
+
+        const isCorrect =
+            selectedSyringeVolume ===
+            currentSyringeTarget;
+
+
+        if (
+            !syringeProblemAnswered
+        ) {
+
+            syringeScoreAttempts++;
+
+
+            if (isCorrect) {
+
+                syringeScoreCorrect++;
+            }
+
+
+            syringeProblemAnswered = true;
+
+
+            updateSyringeScore();
+        }
+
+
+        if (isCorrect) {
+
+            syringeResult.innerHTML = `
+                <strong>Correct!</strong>
+
+                <br><br>
+
+                You selected
+                ${selectedSyringeVolume} mL.
+            `;
+        }
+
+        else {
+
+            syringeResult.innerHTML = `
+                <strong>Try Again.</strong>
+
+                <br><br>
+
+                Check the measurement marks
+                on the syringe.
+            `;
+        }
+    }
+);
+
+
+// ===============================
+// SHOW SYRINGE ANSWER
+// ===============================
+
+showSyringeAnswerButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            currentSyringeTarget === null
+        ) {
+
+            syringeResult.textContent =
+                "Click New Problem first.";
+
+            return;
+        }
+
+
+        clearSyringeMarks();
+
+
+        syringeMarks.forEach(
+            (mark) => {
+
+                const markVolume =
+                    Number(
+                        mark.dataset.volume
+                    );
+
+
+                if (
+                    markVolume ===
+                    currentSyringeTarget
+                ) {
+
+                    mark.classList.add(
+                        "selected"
+                    );
+                }
+            }
+        );
+
+
+        setSyringeLiquidLevel(
+            currentSyringeTarget
+        );
+
+
+        selectedSyringeVolumeText.textContent =
+            `Correct volume: ` +
+            `${currentSyringeTarget} mL`;
+
+
+        syringeResult.innerHTML = `
+            <strong>Answer:</strong>
+
+            <br><br>
+
+            Fill the syringe to the
+            ${currentSyringeTarget} mL mark.
+        `;
+    }
+);
+
+
+// ===============================
+// NEW SYRINGE PROBLEM
+// ===============================
+
+newSyringeProblemButton.addEventListener(
+    "click",
+    generateSyringeProblem
+);
+
+
+// ===============================
+// RESET SYRINGE SCORE
+// ===============================
+
+resetSyringeScoreButton.addEventListener(
+    "click",
+    () => {
+
+        syringeScoreCorrect = 0;
+
+        syringeScoreAttempts = 0;
+
+
+        updateSyringeScore();
+
+
+        syringeResult.textContent =
+            "Score reset.";
+    }
+);
+
+
+// ===============================
+// INITIAL SYRINGE SCORE
+// ===============================
+
+updateSyringeScore();
