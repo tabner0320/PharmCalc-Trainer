@@ -1,652 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- ========================= -->
+<!-- ORAL SYRINGE PRACTICE -->
+<!-- ========================= -->
 
-<head>
-    <meta charset="UTF-8">
+<section class="calculator-card">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <h2>
+        Oral Syringe Practice
+    </h2>
 
-    <title>PharmCalc Trainer</title>
+    <p>
+        Practice selecting the correct volume
+        on a 5 mL oral syringe.
+    </p>
 
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-</head>
 
-<body>
+    <div class="device-score-box">
 
-    <header>
-        <h1>PharmCalc Trainer</h1>
+        <strong>Score:</strong>
+
+        <span id="syringeScoreDisplay">
+            0 / 0
+        </span>
+
+    </div>
+
+
+    <div class="device-question">
+
+        <h3>
+            Measure:
+            <span id="syringeTargetVolume">
+                --
+            </span>
+            mL
+        </h3>
 
         <p>
-            Pharmaceutical calculation practice
-            for students.
+            Click the correct measurement line
+            on the syringe.
         </p>
-    </header>
+
+    </div>
 
 
-    <main>
+    <div class="syringe-practice-area">
 
-        <!-- ========================= -->
-        <!-- METRIC CONVERSION -->
-        <!-- ========================= -->
+        <div class="syringe-wrapper">
 
-        <section class="calculator-card">
-
-            <h2>
-                Metric Conversion
-            </h2>
-
-            <label for="conversionType">
-                Conversion Type
-            </label>
-
-            <select id="conversionType">
-
-                <option value="g-mg">
-                    Grams to Milligrams
-                </option>
-
-                <option value="mg-g">
-                    Milligrams to Grams
-                </option>
-
-                <option value="mg-mcg">
-                    Milligrams to Micrograms
-                </option>
-
-                <option value="mcg-mg">
-                    Micrograms to Milligrams
-                </option>
-
-                <option value="l-ml">
-                    Liters to Milliliters
-                </option>
-
-                <option value="ml-l">
-                    Milliliters to Liters
-                </option>
-
-            </select>
-
-
-            <label for="conversionValue">
-                Amount
-            </label>
-
-            <input
-                type="number"
-                id="conversionValue"
-                step="any"
-                min="0"
-                placeholder="Enter an amount"
-            >
-
-
-            <button id="convertButton">
-                Convert
-            </button>
-
-
-            <div
-                id="conversionResult"
-                class="result"
-            >
+            <div class="syringe-plunger-handle">
             </div>
 
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- TABLET DOSAGE -->
-        <!-- ========================= -->
-
-        <section class="calculator-card">
-
-            <h2>
-                Tablet Dosage Calculator
-            </h2>
-
-            <p class="formula">
-                Amount to give =
-                Dose Ordered ÷ Dose Available
-                × Quantity Available
-            </p>
-
-
-            <label for="orderedDose">
-                Dose Ordered
-            </label>
-
-            <input
-                type="number"
-                id="orderedDose"
-                step="any"
-                min="0"
-                placeholder="Example: 500"
-            >
-
-
-            <label for="availableDose">
-                Dose Available
-            </label>
-
-            <input
-                type="number"
-                id="availableDose"
-                step="any"
-                min="0"
-                placeholder="Example: 250"
-            >
-
-
-            <label for="quantity">
-                Quantity Available
-            </label>
-
-            <input
-                type="number"
-                id="quantity"
-                step="any"
-                min="0"
-                value="1"
-            >
-
-
-            <button id="calculateDoseButton">
-                Calculate Dose
-            </button>
-
-
-            <div
-                id="doseResult"
-                class="result"
-            >
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- LIQUID MEDICATION -->
-        <!-- ========================= -->
-
-        <section class="calculator-card">
-
-            <h2>
-                Liquid Medication Calculator
-            </h2>
-
-            <p class="formula">
-                Amount to give =
-                Dose Ordered ÷ Dose Available
-                × Volume Available
-            </p>
-
-
-            <label for="liquidOrderedDose">
-                Dose Ordered
-            </label>
-
-            <input
-                type="number"
-                id="liquidOrderedDose"
-                step="any"
-                min="0"
-                placeholder="Example: 250"
-            >
-
-
-            <label for="liquidAvailableDose">
-                Dose Available
-            </label>
-
-            <input
-                type="number"
-                id="liquidAvailableDose"
-                step="any"
-                min="0"
-                placeholder="Example: 125"
-            >
-
-
-            <label for="liquidVolume">
-                Volume Available (mL)
-            </label>
-
-            <input
-                type="number"
-                id="liquidVolume"
-                step="any"
-                min="0"
-                placeholder="Example: 5"
-            >
-
-
-            <button id="calculateLiquidButton">
-                Calculate Liquid Dose
-            </button>
-
-
-            <div
-                id="liquidResult"
-                class="result"
-            >
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- PRACTICE MODE -->
-        <!-- ========================= -->
-
-        <section class="calculator-card">
-
-            <h2>
-                Practice Mode
-            </h2>
-
-            <p>
-                Solve the liquid medication
-                calculation below.
-            </p>
-
-
-            <div class="practice-problem">
-
-                <h3>
-                    Liquid Medication Practice
-                </h3>
-
-                <p id="practiceQuestion">
-                    Click "New Problem" to begin.
-                </p>
-
+            <div class="syringe-plunger-rod">
             </div>
 
 
-            <label for="practiceAnswer">
-                Your Answer (mL)
-            </label>
+            <div class="syringe-barrel">
 
-            <input
-                type="number"
-                id="practiceAnswer"
-                step="any"
-                min="0"
-                placeholder="Enter your answer"
-            >
-
-
-            <div class="practice-buttons">
-
-                <button id="checkAnswerButton">
-                    Check Answer
-                </button>
-
-                <button id="newProblemButton">
-                    New Problem
-                </button>
-
-                <button id="showSolutionButton">
-                    Show Solution
-                </button>
-
-            </div>
-
-
-            <div
-                id="practiceResult"
-                class="result"
-            >
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- DOSING SPOON PRACTICE -->
-        <!-- ========================= -->
-
-        <section class="calculator-card">
-
-            <h2>
-                Dosing Spoon Practice
-            </h2>
-
-            <p>
-                Practice selecting the correct liquid
-                volume on a dosing spoon.
-            </p>
-
-
-            <div class="device-score-box">
-
-                <strong>Score:</strong>
-
-                <span id="deviceScoreDisplay">
-                    0 / 0
-                </span>
-
-            </div>
-
-
-            <div class="device-question">
-
-                <h3>
-                    Measure:
-                    <span id="targetVolume">
-                        --
-                    </span>
-                    mL
-                </h3>
-
-                <p>
-                    Select the correct measurement line
-                    on the dosing spoon.
-                </p>
-
-            </div>
-
-
-            <div class="spoon-container">
-
-                <div class="spoon-bowl">
-
-                    <div
-                        id="spoonLiquid"
-                        class="spoon-liquid"
-                    >
-                    </div>
-
-
-                    <div
-                        class="measurement-line line-5"
-                        data-volume="5"
-                    >
-                        <span>5 mL</span>
-                    </div>
-
-
-                    <div
-                        class="measurement-line line-2-5"
-                        data-volume="2.5"
-                    >
-                        <span>2.5 mL</span>
-                    </div>
-
-
-                    <div
-                        class="measurement-line line-1"
-                        data-volume="1"
-                    >
-                        <span>1 mL</span>
-                    </div>
-
+                <div
+                    id="syringeLiquid"
+                    class="syringe-liquid"
+                >
                 </div>
 
 
-                <div class="spoon-handle">
-                </div>
-
-            </div>
-
-
-            <p id="selectedVolumeText">
-                Selected volume: None
-            </p>
-
-
-            <div class="practice-buttons">
-
-                <button id="checkDeviceButton">
-                    Check Answer
+                <button
+                    class="syringe-mark mark-05"
+                    data-volume="0.5"
+                    aria-label="0.5 milliliters"
+                >
                 </button>
 
-                <button id="newDeviceProblemButton">
-                    New Problem
+                <button
+                    class="syringe-mark major mark-1"
+                    data-volume="1"
+                    aria-label="1 milliliter"
+                >
+                    <span>1</span>
                 </button>
 
-                <button id="showDeviceAnswerButton">
-                    Show Answer
+                <button
+                    class="syringe-mark mark-15"
+                    data-volume="1.5"
+                    aria-label="1.5 milliliters"
+                >
                 </button>
 
-            </div>
-
-
-            <button id="resetDeviceScoreButton">
-                Reset Score
-            </button>
-
-
-            <div
-                id="deviceResult"
-                class="result"
-            >
-            </div>
-
-        </section>
-
-
-        <!-- ========================= -->
-        <!-- ORAL SYRINGE PRACTICE -->
-        <!-- ========================= -->
-
-        <section class="calculator-card">
-
-            <h2>
-                Oral Syringe Practice
-            </h2>
-
-            <p>
-                Practice selecting the correct volume
-                on a 5 mL oral syringe.
-            </p>
-
-
-            <div class="device-score-box">
-
-                <strong>Score:</strong>
-
-                <span id="syringeScoreDisplay">
-                    0 / 0
-                </span>
-
-            </div>
-
-
-            <div class="device-question">
-
-                <h3>
-                    Measure:
-                    <span id="syringeTargetVolume">
-                        --
-                    </span>
-                    mL
-                </h3>
-
-                <p>
-                    Click the correct measurement mark
-                    on the syringe.
-                </p>
-
-            </div>
-
-
-            <div class="syringe-practice-area">
-
-                <div class="syringe">
-
-                    <div class="syringe-plunger">
-                    </div>
-
-
-                    <div class="syringe-barrel">
-
-                        <div
-                            id="syringeLiquid"
-                            class="syringe-liquid"
-                        >
-                        </div>
-
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="0.5"
-                        >
-                            0.5
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="1"
-                        >
-                            1
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="1.5"
-                        >
-                            1.5
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="2"
-                        >
-                            2
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="2.5"
-                        >
-                            2.5
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="3"
-                        >
-                            3
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="3.5"
-                        >
-                            3.5
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="4"
-                        >
-                            4
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="4.5"
-                        >
-                            4.5
-                        </button>
-
-                        <button
-                            class="syringe-mark"
-                            data-volume="5"
-                        >
-                            5
-                        </button>
-
-                    </div>
-
-
-                    <div class="syringe-tip">
-                    </div>
-
-                </div>
-
-
-                <p class="syringe-label">
-                    mL
-                </p>
-
-            </div>
-
-
-            <p id="selectedSyringeVolumeText">
-                Selected volume: None
-            </p>
-
-
-            <div class="practice-buttons">
-
-                <button id="checkSyringeButton">
-                    Check Answer
+                <button
+                    class="syringe-mark major mark-2"
+                    data-volume="2"
+                    aria-label="2 milliliters"
+                >
+                    <span>2</span>
                 </button>
 
-                <button id="newSyringeProblemButton">
-                    New Problem
+                <button
+                    class="syringe-mark mark-25"
+                    data-volume="2.5"
+                    aria-label="2.5 milliliters"
+                >
                 </button>
 
-                <button id="showSyringeAnswerButton">
-                    Show Answer
+                <button
+                    class="syringe-mark major mark-3"
+                    data-volume="3"
+                    aria-label="3 milliliters"
+                >
+                    <span>3</span>
+                </button>
+
+                <button
+                    class="syringe-mark mark-35"
+                    data-volume="3.5"
+                    aria-label="3.5 milliliters"
+                >
+                </button>
+
+                <button
+                    class="syringe-mark major mark-4"
+                    data-volume="4"
+                    aria-label="4 milliliters"
+                >
+                    <span>4</span>
+                </button>
+
+                <button
+                    class="syringe-mark mark-45"
+                    data-volume="4.5"
+                    aria-label="4.5 milliliters"
+                >
+                </button>
+
+                <button
+                    class="syringe-mark major mark-5"
+                    data-volume="5"
+                    aria-label="5 milliliters"
+                >
+                    <span>5</span>
                 </button>
 
             </div>
 
 
-            <button id="resetSyringeScoreButton">
-                Reset Score
-            </button>
-
-
-            <div
-                id="syringeResult"
-                class="result"
-            >
+            <div class="syringe-tip-base">
             </div>
 
-        </section>
+            <div class="syringe-tip">
+            </div>
+
+        </div>
 
 
-        <!-- ========================= -->
-        <!-- EDUCATIONAL DISCLAIMER -->
-        <!-- ========================= -->
+        <p class="syringe-unit">
+            mL
+        </p>
 
-        <section class="warning-card">
-
-            <h2>
-                Educational Use Only
-            </h2>
-
-            <p>
-                This website is intended for
-                pharmaceutical calculation practice
-                and education only.
-            </p>
-
-            <p>
-                It should not be used as a substitute
-                for professional clinical judgment,
-                medication verification, or an
-                approved pharmacy reference.
-            </p>
-
-        </section>
-
-    </main>
+    </div>
 
 
-    <script src="js/app.js"></script>
+    <p id="selectedSyringeVolumeText">
+        Selected volume: None
+    </p>
 
-</body>
 
-</html>
+    <div class="practice-buttons">
+
+        <button id="checkSyringeButton">
+            Check Answer
+        </button>
+
+        <button id="newSyringeProblemButton">
+            New Problem
+        </button>
+
+        <button id="showSyringeAnswerButton">
+            Show Answer
+        </button>
+
+    </div>
+
+
+    <button id="resetSyringeScoreButton">
+        Reset Score
+    </button>
+
+
+    <div
+        id="syringeResult"
+        class="result"
+    >
+    </div>
+
+</section>
