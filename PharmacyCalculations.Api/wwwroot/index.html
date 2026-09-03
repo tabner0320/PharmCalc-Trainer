@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PharmCalc Trainer</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body>
+
+    <header>
+        <h1>PharmCalc Trainer</h1>
+
+        <p>
+            Pharmaceutical calculation practice
+            for students.
+        </p>
+    </header>
+
+
+    <main>
+
+        <!-- ========================= -->
+        <!-- METRIC CONVERSION -->
+        <!-- ========================= -->
+
+        <section class="calculator-card">
+
+            <h2>
+                Metric Conversion
+            </h2>
+
+            <label for="conversionType">
+                Conversion Type
+            </label>
+
+            <select id="conversionType">
+
+                <option value="g-mg">
+                    Grams to Milligrams
+                </option>
+
+                <option value="mg-g">
+                    Milligrams to Grams
+                </option>
+
+                <option value="mg-mcg">
+                    Milligrams to Micrograms
+                </option>
+
+                <option value="mcg-mg">
+                    Micrograms to Milligrams
+                </option>
+
+                <option value="l-ml">
+                    Liters to Milliliters
+                </option>
+
+                <option value="ml-l">
+                    Milliliters to Liters
+                </option>
+
+            </select>
+
+
+            <label for="conversionValue">
+                Amount
+            </label>
+
+            <input
+                type="number"
+                id="conversionValue"
+                step="any"
+                min="0"
+                placeholder="Enter an amount"
+            >
+
+
+            <button id="convertButton">
+                Convert
+            </button>
+
+
+            <div
+                id="conversionResult"
+                class="result"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- TABLET DOSAGE CALCULATOR -->
+        <!-- ========================= -->
+
+        <section class="calculator-card">
+
+            <h2>
+                Tablet Dosage Calculator
+            </h2>
+
+            <p class="formula">
+                Amount to give =
+                Dose Ordered ÷ Dose Available
+                × Quantity Available
+            </p>
+
+
+            <label for="orderedDose">
+                Dose Ordered
+            </label>
+
+            <input
+                type="number"
+                id="orderedDose"
+                step="any"
+                min="0"
+                placeholder="Example: 500"
+            >
+
+
+            <label for="availableDose">
+                Dose Available
+            </label>
+
+            <input
+                type="number"
+                id="availableDose"
+                step="any"
+                min="0"
+                placeholder="Example: 250"
+            >
+
+
+            <label for="quantity">
+                Quantity Available
+            </label>
+
+            <input
+                type="number"
+                id="quantity"
+                step="any"
+                min="0"
+                value="1"
+            >
+
+
+            <button id="calculateDoseButton">
+                Calculate Dose
+            </button>
+
+
+            <div
+                id="doseResult"
+                class="result"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- LIQUID MEDICATION -->
+        <!-- ========================= -->
+
+        <section class="calculator-card">
+
+            <h2>
+                Liquid Medication Calculator
+            </h2>
+
+            <p class="formula">
+                Amount to give =
+                Dose Ordered ÷ Dose Available
+                × Volume Available
+            </p>
+
+
+            <label for="liquidOrderedDose">
+                Dose Ordered
+            </label>
+
+            <input
+                type="number"
+                id="liquidOrderedDose"
+                step="any"
+                min="0"
+                placeholder="Example: 250"
+            >
+
+
+            <label for="liquidAvailableDose">
+                Dose Available
+            </label>
+
+            <input
+                type="number"
+                id="liquidAvailableDose"
+                step="any"
+                min="0"
+                placeholder="Example: 125"
+            >
+
+
+            <label for="liquidVolume">
+                Volume Available (mL)
+            </label>
+
+            <input
+                type="number"
+                id="liquidVolume"
+                step="any"
+                min="0"
+                placeholder="Example: 5"
+            >
+
+
+            <button id="calculateLiquidButton">
+                Calculate Liquid Dose
+            </button>
+
+
+            <div
+                id="liquidResult"
+                class="result"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- PRACTICE MODE -->
+        <!-- ========================= -->
+
+        <section class="calculator-card">
+
+            <h2>
+                Practice Mode
+            </h2>
+
+            <p>
+                Solve the liquid medication
+                calculation below.
+            </p>
+
+
+            <div class="practice-problem">
+
+                <h3>
+                    Liquid Medication Practice
+                </h3>
+
+                <p id="practiceQuestion">
+                    Click "New Problem" to begin.
+                </p>
+
+            </div>
+
+
+            <label for="practiceAnswer">
+                Your Answer (mL)
+            </label>
+
+            <input
+                type="number"
+                id="practiceAnswer"
+                step="any"
+                min="0"
+                placeholder="Enter your answer"
+            >
+
+
+            <div class="practice-buttons">
+
+                <button id="checkAnswerButton">
+                    Check Answer
+                </button>
+
+                <button id="newProblemButton">
+                    New Problem
+                </button>
+
+                <button id="showSolutionButton">
+                    Show Solution
+                </button>
+
+            </div>
+
+
+            <div
+                id="practiceResult"
+                class="result"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- EDUCATIONAL DISCLAIMER -->
+        <!-- ========================= -->
+
+        <section class="warning-card">
+
+            <h2>
+                Educational Use Only
+            </h2>
+
+            <p>
+                This website is intended for
+                pharmaceutical calculation practice
+                and education only.
+            </p>
+
+            <p>
+                It should not be used as a substitute
+                for professional clinical judgment,
+                medication verification, or an
+                approved pharmacy reference.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

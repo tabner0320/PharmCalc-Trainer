@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7f8;
+    color: #222;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    padding: 45px 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+}
+
+header p {
+    margin: 0;
+    font-size: 18px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.calculator-card,
+.warning-card {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
+}
+
+.calculator-card h2,
+.warning-card h2 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+
+label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 6px;
+
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 12px;
+
+    font-size: 16px;
+
+    border: 1px solid #bbb;
+
+    border-radius: 6px;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #555;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding: 14px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: #333;
+    color: white;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+.result {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    background-color: #f2f2f2;
+
+    border-radius: 8px;
+
+    min-height: 60px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FORMULA
+========================= */
+
+.formula {
+    font-weight: bold;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   PRACTICE MODE
+========================= */
+
+.practice-problem {
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background-color: #f8f8f8;
+
+    border-radius: 8px;
+
+    border: 1px solid #ddd;
+}
+
+.practice-problem h3 {
+    margin-top: 0;
+}
+
+.practice-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+.practice-buttons button {
+    margin-top: 0;
+}
+
+
+/* =========================
+   DISCLAIMER
+========================= */
+
+.warning-card {
+    border-left: 5px solid #555;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    main {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    .calculator-card,
+    .warning-card {
+        padding: 20px;
+    }
+
+    .practice-buttons {
+        grid-template-columns: 1fr;
+    }
+}
