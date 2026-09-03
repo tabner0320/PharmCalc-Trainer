@@ -1,26 +1,10 @@
 # PharmCalc Trainer
 
-**PharmCalc Trainer** is an educational pharmacy calculation practice application built with **C#, ASP.NET Core, HTML, CSS, and JavaScript**.
+PharmCalc Trainer is a full-stack educational web application designed to help students practice common pharmaceutical calculations and medication-measurement skills.
 
-The application provides interactive tools and practice exercises for learning common pharmaceutical calculations and medication measurement concepts.
+The project combines a responsive HTML, CSS, and JavaScript frontend with an ASP.NET Core Minimal API and C# calculation services. It also includes automated unit and integration testing with xUnit.
 
----
-
-## Overview
-
-PharmCalc Trainer was created as a software development portfolio project that combines an **ASP.NET Core backend** with an interactive **HTML, CSS, and JavaScript frontend**.
-
-The project demonstrates:
-
-- C# and .NET development
-- ASP.NET Core web application development
-- JavaScript event handling
-- DOM manipulation
-- Mathematical calculation logic
-- Interactive user interfaces
-- Responsive web design
-- Automated testing
-- Git and GitHub version control
+> **Educational Use Only:** PharmCalc Trainer is intended for pharmaceutical calculation practice and education only. It is not a substitute for professional clinical judgment, medication verification, or an approved pharmacy reference, and should not be used to make real-world patient-specific medication or dosing decisions.
 
 ---
 
@@ -28,14 +12,16 @@ The project demonstrates:
 
 ### Metric Conversion
 
-Practice common pharmacy-related metric conversions:
+Practice common metric conversions including:
 
-- Grams to milligrams
-- Milligrams to grams
-- Milligrams to micrograms
-- Micrograms to milligrams
-- Liters to milliliters
-- Milliliters to liters
+- Grams → Milligrams
+- Milligrams → Grams
+- Milligrams → Micrograms
+- Micrograms → Milligrams
+- Liters → Milliliters
+- Milliliters → Liters
+
+Metric conversions are processed through the ASP.NET Core API and C# `CalculationService`.
 
 ---
 
@@ -44,18 +30,17 @@ Practice common pharmacy-related metric conversions:
 Calculates the number of tablets required using:
 
 ```text
-Amount to Give =
-Dose Ordered ÷ Dose Available × Quantity Available
+Amount to Give = Dose Ordered ÷ Dose Available × Quantity Available
 ```
 
 Example:
 
 ```text
-Dose Ordered: 500 mg
-Dose Available: 250 mg
+Dose Ordered:       500 mg
+Dose Available:     250 mg
 Quantity Available: 1 tablet
 
-500 ÷ 250 × 1 = 2 tablets
+Answer: 2 tablets
 ```
 
 ---
@@ -65,116 +50,254 @@ Quantity Available: 1 tablet
 Calculates the volume of liquid medication using:
 
 ```text
-Amount to Give =
-Dose Ordered ÷ Dose Available × Volume Available
+Amount to Give = Dose Ordered ÷ Dose Available × Volume Available
 ```
 
 Example:
 
 ```text
-Dose Ordered: 250 mg
-Dose Available: 125 mg
-Volume Available: 5 mL
+Dose Ordered:      250 mg
+Dose Available:    125 mg
+Volume Available:  5 mL
 
-250 ÷ 125 × 5 = 10 mL
+Answer: 10 mL
 ```
 
 ---
 
+## Interactive Practice
+
 ### Practice Mode
 
-Generates random liquid medication calculation problems.
-
-Users can:
+Generates pharmaceutical calculation practice problems that allow users to:
 
 - Generate a new problem
 - Enter an answer
 - Check the answer
-- View the complete solution
-
-This allows users to practice calculations without manually entering a problem each time.
+- View the solution
 
 ---
 
 ### Dosing Spoon Practice
 
-Provides an interactive dosing spoon exercise.
+Interactive dosing-spoon exercises allow users to:
 
-Users can:
-
-- Generate a random target volume
-- Select a measurement line
-- See the simulated liquid level
-- Check their answer
+- Generate random target volumes
+- Select measurement lines
+- Visualize liquid levels
+- Check answers
 - Show the correct answer
 - Track correct answers and attempts
 - Reset the score
-
-Current practice measurements include:
-
-```text
-1 mL
-2.5 mL
-5 mL
-```
 
 ---
 
 ### Oral Syringe Practice
 
-Provides an interactive **5 mL oral syringe** for practicing measurement selection.
+The interactive 5 mL oral syringe provides practice with:
 
-Users can select measurements in **0.5 mL increments**:
-
-```text
-0.5 mL
-1 mL
-1.5 mL
-2 mL
-2.5 mL
-3 mL
-3.5 mL
-4 mL
-4.5 mL
-5 mL
-```
-
-The exercise includes:
-
-- Random measurement problems
-- Interactive syringe measurement marks
-- Visual liquid fill
+- 0.5 mL measurement increments
+- Random target volumes
+- Clickable measurement marks
+- Visual liquid levels
 - Answer checking
-- Show Answer
+- Solution display
 - Score tracking
-- Score reset
 
 ---
 
 ### Medicine Cup Practice
 
-Provides an interactive **30 mL medicine cup** exercise.
+The interactive 30 mL medicine cup provides practice with:
 
-Current practice measurements include:
+- 5 mL through 30 mL measurements
+- Clickable measurement lines
+- Visual liquid fill
+- Random target volumes
+- Answer checking
+- Solution display
+- Score tracking
+
+---
+
+## Full-Stack Architecture
+
+PharmCalc Trainer separates the user interface from the calculation logic.
 
 ```text
-5 mL
-10 mL
-15 mL
-20 mL
-25 mL
-30 mL
+HTML / CSS
+     ↓
+JavaScript
+     ↓
+fetch()
+     ↓
+ASP.NET Core Minimal API
+     ↓
+CalculationService
+     ↓
+JSON Response
+     ↓
+JavaScript displays result
 ```
 
-Users can:
+The browser collects the user's input and JavaScript sends calculation requests to the ASP.NET Core API.
 
-- Generate a random target volume
-- Select a measurement line
-- See the cup fill visually
-- Check the selected measurement
-- Display the correct answer
-- Track correct answers and attempts
-- Reset the score
+The API validates the request and passes valid calculation data to the C# `CalculationService`.
+
+The calculated result is returned as JSON and displayed in the browser.
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/api/health` | Checks whether the API is running |
+| `POST` | `/api/calculate/tablet` | Performs tablet dosage calculations |
+| `POST` | `/api/calculate/liquid` | Performs liquid medication calculations |
+| `POST` | `/api/convert` | Performs metric conversions |
+
+### Example Tablet Request
+
+```json
+{
+  "doseOrdered": 500,
+  "doseAvailable": 250,
+  "quantityAvailable": 1
+}
+```
+
+Response:
+
+```json
+{
+  "amountToGive": 2
+}
+```
+
+### Example Liquid Request
+
+```json
+{
+  "doseOrdered": 250,
+  "doseAvailable": 125,
+  "volumeAvailable": 5
+}
+```
+
+Response:
+
+```json
+{
+  "amountToGive": 10
+}
+```
+
+### Example Metric Conversion Request
+
+```json
+{
+  "value": 1,
+  "conversionType": "g-to-mg"
+}
+```
+
+Response:
+
+```json
+{
+  "convertedValue": 1000
+}
+```
+
+---
+
+## API Validation
+
+The backend validates incoming requests before calculations are performed.
+
+Examples of invalid requests include:
+
+- Dose available is zero or negative
+- Negative calculation values
+- Missing conversion type
+- Invalid conversion type
+- Negative metric conversion values
+
+Invalid requests return:
+
+```text
+HTTP 400 Bad Request
+```
+
+This provides an additional validation layer even if browser-side validation is bypassed.
+
+---
+
+## Calculation Service
+
+Calculation logic is separated from the API endpoints using:
+
+```text
+PharmacyCalculations.Api/
+└── Services/
+    └── CalculationService.cs
+```
+
+`CalculationService` handles:
+
+- Tablet dosage calculations
+- Liquid medication calculations
+- Grams to milligrams
+- Milligrams to grams
+- Milligrams to micrograms
+- Micrograms to milligrams
+- Liters to milliliters
+- Milliliters to liters
+
+Separating calculation logic from the endpoints makes the application easier to maintain and test.
+
+---
+
+## Automated Testing
+
+PharmCalc Trainer uses **xUnit** for automated testing.
+
+The project currently contains:
+
+```text
+20 automated tests
+20 passing
+0 failing
+```
+
+Testing includes both **unit tests** and **API integration tests**.
+
+### Unit Tests
+
+The `CalculationService` is tested independently for:
+
+- Tablet calculations
+- Liquid calculations
+- Metric conversions
+- Invalid dose availability
+
+### API Integration Tests
+
+ASP.NET Core's `WebApplicationFactory<Program>` is used to test the API.
+
+Integration testing covers:
+
+- Health endpoint
+- Tablet calculation endpoint
+- Liquid calculation endpoint
+- Metric conversion endpoint
+- Zero available tablet dose
+- Zero available liquid dose
+- Invalid conversion types
+- Missing conversion types
+- Negative conversion values
+- HTTP success and bad-request responses
 
 ---
 
@@ -183,11 +306,13 @@ Users can:
 | Category | Technology |
 |---|---|
 | Language | C# |
-| Framework | .NET / ASP.NET Core |
-| Frontend | HTML5 |
-| Styling | CSS3 |
-| Client-Side Logic | JavaScript |
+| Framework | .NET 10 |
+| Backend | ASP.NET Core Minimal API |
+| Frontend | HTML5, CSS3, JavaScript |
+| API Communication | Fetch API |
+| Data Format | JSON |
 | Testing | xUnit |
+| Integration Testing | WebApplicationFactory |
 | Version Control | Git |
 | Repository Hosting | GitHub |
 | Development Environment | Visual Studio Code |
@@ -201,19 +326,15 @@ PharmCalc Trainer/
 │
 ├── PharmacyCalculations.slnx
 ├── README.md
-├── .gitignore
 │
 ├── PharmacyCalculations.Api/
-│   │
 │   ├── Program.cs
 │   ├── PharmacyCalculations.Api.csproj
-│   ├── appsettings.json
-│   ├── appsettings.Development.json
 │   │
-│   ├── Properties/
+│   ├── Services/
+│   │   └── CalculationService.cs
 │   │
 │   └── wwwroot/
-│       │
 │       ├── index.html
 │       │
 │       ├── css/
@@ -223,80 +344,44 @@ PharmCalc Trainer/
 │           └── app.js
 │
 └── PharmacyCalculations.Tests/
-    │
     ├── PharmacyCalculations.Tests.csproj
+    ├── CalculationServiceTests.cs
     └── UnitTest1.cs
 ```
 
 ---
 
-## API
+## Running the Application
 
-The ASP.NET Core application includes a health endpoint:
-
-```http
-GET /api/health
-```
-
-Example response:
-
-```json
-{
-  "message": "PharmCalc Trainer API is running."
-}
-```
-
-This endpoint can be used to verify that the ASP.NET Core application is running successfully.
-
----
-
-## Running the Project
-
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/tabner0320/PharmCalc-Trainer.git
 ```
 
-### 2. Enter the project directory
-
-Because the folder name contains spaces:
+### 2. Open the Project
 
 ```bash
-cd "PharmCalc Trainer"
+cd "PharmCalc-Trainer"
 ```
 
-### 3. Restore dependencies
-
-```bash
-dotnet restore
-```
-
-### 4. Build the solution
-
-```bash
-dotnet build
-```
-
-### 5. Run the application
-
-From the project root:
+### 3. Run the Application
 
 ```bash
 dotnet run --project PharmacyCalculations.Api
 ```
 
-You can also run the project using:
+The terminal will display the local address, for example:
 
-```bash
-dotnet run --project PharmacyCalculations.Api/PharmacyCalculations.Api.csproj
+```text
+Now listening on: http://localhost:5137
 ```
 
-Open the localhost address displayed in the terminal.
+Open that address in your browser.
 
 ---
 
-## Running Tests
+## Running the Tests
 
 From the project root, run:
 
@@ -304,10 +389,13 @@ From the project root, run:
 dotnet test
 ```
 
-This builds and runs the tests contained in:
+Current test status:
 
 ```text
-PharmacyCalculations.Tests
+Total:   20
+Passed:  20
+Failed:  0
+Skipped: 0
 ```
 
 ---
@@ -318,47 +406,53 @@ This project demonstrates experience with:
 
 - C#
 - .NET
-- ASP.NET Core
+- ASP.NET Core Minimal APIs
+- REST-style API development
 - HTML5
 - CSS3
 - JavaScript
-- DOM manipulation
-- Event listeners
-- Input validation
-- Mathematical calculations
-- Interactive UI development
-- Responsive web design
-- xUnit testing
+- Fetch API
+- JSON
+- Asynchronous JavaScript
+- Backend input validation
+- HTTP status codes
+- Dependency injection
+- Service-layer architecture
+- Unit testing
+- API integration testing
+- xUnit
+- `WebApplicationFactory`
 - Git
 - GitHub
-- Full-stack application structure
+- Responsive web development
+- Full-stack application architecture
 
 ---
 
-## Planned Improvements
+## Future Improvements
 
-Future improvements may include:
+Potential future improvements include:
 
-- Additional pharmacy calculation categories
-- Expanded practice problem banks
-- Combined measurement-device practice mode
-- Practice score tracking
+- Additional pharmaceutical calculation categories
+- Expanded practice-question library
+- More measurement devices
 - Difficulty levels
-- More detailed solution explanations
-- Additional automated tests
-- Improved mobile responsiveness
-- Accessibility improvements
-- Enhanced visual measurement devices
+- Improved score tracking
+- Persistent practice history
+- Additional API validation tests
+- Improved accessibility
+- Enhanced mobile interface
+- Deployment to a cloud hosting platform
 
 ---
 
-## Educational Use Only
+## Educational Disclaimer
 
-**PharmCalc Trainer is intended for pharmaceutical calculation practice and education only.**
+PharmCalc Trainer is intended for **educational and pharmaceutical calculation practice purposes only**.
 
-It is not a substitute for professional clinical judgment, medication verification, institutional policies, or an approved pharmacy reference.
+The application is not intended to provide medical advice, verify prescriptions, recommend medication doses, or replace professional clinical judgment.
 
-The application should not be used to make real-world patient-specific medication or dosing decisions.
+All real-world medication calculations should be independently verified using approved professional references, organizational procedures, and qualified healthcare professionals.
 
 ---
 
@@ -366,12 +460,4 @@ The application should not be used to make real-world patient-specific medicatio
 
 **Theophilus M. Abner Jr.**
 
-Aspiring Software Developer and IT Professional focused on **C#, .NET, ASP.NET Core, JavaScript, APIs, cloud technologies, and practical full-stack application development**.
-
----
-
-## Project Purpose
-
-PharmCalc Trainer was developed as a portfolio project to demonstrate how programming concepts can be applied to an interactive educational application.
-
-The project combines backend development, frontend development, mathematical logic, user interaction, responsive design, testing, and version control in a single .NET application.
+Aspiring Software Developer and IT Professional focused on C#, .NET, ASP.NET Core, JavaScript, APIs, cloud technologies, and practical full-stack application development.
