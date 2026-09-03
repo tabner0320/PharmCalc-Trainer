@@ -23,7 +23,7 @@ const conversionResult =
 
 convertButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
         const value =
             Number(metricValue.value);
@@ -36,7 +36,6 @@ convertButton.addEventListener(
             metricValue.value === "" ||
             Number.isNaN(value)
         ) {
-
             conversionResult.textContent =
                 "Enter a valid number.";
 
@@ -44,85 +43,111 @@ convertButton.addEventListener(
         }
 
 
-        let result;
-        let message;
+        const conversionMap = {
+            "g-mg": "g-to-mg",
+            "mg-g": "mg-to-g",
+            "mg-mcg": "mg-to-mcg",
+            "mcg-mg": "mcg-to-mg",
+            "l-ml": "l-to-ml",
+            "ml-l": "ml-to-l"
+        };
 
 
-        switch (conversion) {
-
-            case "g-mg":
-
-                result = value * 1000;
-
-                message =
-                    `${value} g = ${result} mg`;
-
-                break;
+        const apiConversionType =
+            conversionMap[conversion];
 
 
-            case "mg-g":
+        if (!apiConversionType) {
+            conversionResult.textContent =
+                "Select a conversion.";
 
-                result = value / 1000;
-
-                message =
-                    `${value} mg = ${result} g`;
-
-                break;
-
-
-            case "mg-mcg":
-
-                result = value * 1000;
-
-                message =
-                    `${value} mg = ${result} mcg`;
-
-                break;
-
-
-            case "mcg-mg":
-
-                result = value / 1000;
-
-                message =
-                    `${value} mcg = ${result} mg`;
-
-                break;
-
-
-            case "l-ml":
-
-                result = value * 1000;
-
-                message =
-                    `${value} L = ${result} mL`;
-
-                break;
-
-
-            case "ml-l":
-
-                result = value / 1000;
-
-                message =
-                    `${value} mL = ${result} L`;
-
-                break;
-
-
-            default:
-
-                message =
-                    "Select a conversion.";
+            return;
         }
 
 
-        conversionResult.innerHTML =
-            `<strong>${message}</strong>`;
+        try {
+
+            const response = await fetch(
+                "/api/convert",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        value: value,
+                        conversionType:
+                            apiConversionType
+                    })
+                }
+            );
+
+
+            if (!response.ok) {
+                conversionResult.textContent =
+                    "Unable to complete conversion.";
+
+                return;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            let message;
+
+
+            switch (conversion) {
+
+                case "g-mg":
+                    message =
+                        `${value} g = ${data.convertedValue} mg`;
+                    break;
+
+                case "mg-g":
+                    message =
+                        `${value} mg = ${data.convertedValue} g`;
+                    break;
+
+                case "mg-mcg":
+                    message =
+                        `${value} mg = ${data.convertedValue} mcg`;
+                    break;
+
+                case "mcg-mg":
+                    message =
+                        `${value} mcg = ${data.convertedValue} mg`;
+                    break;
+
+                case "l-ml":
+                    message =
+                        `${value} L = ${data.convertedValue} mL`;
+                    break;
+
+                case "ml-l":
+                    message =
+                        `${value} mL = ${data.convertedValue} L`;
+                    break;
+            }
+
+
+            conversionResult.innerHTML =
+                `<strong>${message}</strong>`;
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            conversionResult.textContent =
+                "Unable to connect to the API.";
+        }
     }
 );
-
-
 // ==========================================
 // TABLET DOSAGE CALCULATOR
 // ==========================================
@@ -155,7 +180,7 @@ const tabletResult =
 
 tabletCalculateButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
         const ordered =
             Number(tabletOrdered.value);
@@ -172,7 +197,6 @@ tabletCalculateButton.addEventListener(
             tabletAvailable.value === "" ||
             tabletQuantity.value === ""
         ) {
-
             tabletResult.textContent =
                 "Enter all values.";
 
@@ -185,7 +209,6 @@ tabletCalculateButton.addEventListener(
             Number.isNaN(available) ||
             Number.isNaN(quantity)
         ) {
-
             tabletResult.textContent =
                 "Enter valid numbers.";
 
@@ -194,7 +217,6 @@ tabletCalculateButton.addEventListener(
 
 
         if (available <= 0) {
-
             tabletResult.textContent =
                 "Dose Available must be greater than 0.";
 
@@ -202,38 +224,74 @@ tabletCalculateButton.addEventListener(
         }
 
 
-        const amountToGive =
-            (ordered / available) *
-            quantity;
+        try {
+
+            const response = await fetch(
+                "/api/calculate/tablet",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        doseOrdered: ordered,
+                        doseAvailable: available,
+                        quantityAvailable:
+                            quantity
+                    })
+                }
+            );
 
 
-        const roundedAnswer =
-            Math.round(
-                amountToGive * 100
-            ) / 100;
+            if (!response.ok) {
+                tabletResult.textContent =
+                    "Unable to calculate tablet dose.";
+
+                return;
+            }
 
 
-        tabletResult.innerHTML = `
-            <strong>
-                Answer:
-            </strong>
+            const data =
+                await response.json();
 
-            ${roundedAnswer} tablet(s)
 
-            <br><br>
+            const roundedAnswer =
+                Math.round(
+                    data.amountToGive * 100
+                ) / 100;
 
-            ${ordered}
-            ÷
-            ${available}
-            ×
-            ${quantity}
-            =
-            ${roundedAnswer}
-        `;
+
+            tabletResult.innerHTML = `
+                <strong>
+                    Answer:
+                </strong>
+
+                ${roundedAnswer} tablet(s)
+
+                <br><br>
+
+                ${ordered}
+                ÷
+                ${available}
+                ×
+                ${quantity}
+                =
+                ${roundedAnswer}
+            `;
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            tabletResult.textContent =
+                "Unable to connect to the API.";
+        }
     }
 );
-
-
 // ==========================================
 // LIQUID MEDICATION CALCULATOR
 // ==========================================
@@ -266,7 +324,7 @@ const liquidResult =
 
 liquidCalculateButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
         const ordered =
             Number(liquidOrdered.value);
@@ -283,7 +341,6 @@ liquidCalculateButton.addEventListener(
             liquidAvailable.value === "" ||
             liquidVolume.value === ""
         ) {
-
             liquidResult.textContent =
                 "Enter all values.";
 
@@ -296,7 +353,6 @@ liquidCalculateButton.addEventListener(
             Number.isNaN(available) ||
             Number.isNaN(volume)
         ) {
-
             liquidResult.textContent =
                 "Enter valid numbers.";
 
@@ -305,7 +361,6 @@ liquidCalculateButton.addEventListener(
 
 
         if (available <= 0) {
-
             liquidResult.textContent =
                 "Dose Available must be greater than 0.";
 
@@ -313,38 +368,74 @@ liquidCalculateButton.addEventListener(
         }
 
 
-        const amountToGive =
-            (ordered / available) *
-            volume;
+        try {
+
+            const response = await fetch(
+                "/api/calculate/liquid",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        doseOrdered: ordered,
+                        doseAvailable: available,
+                        volumeAvailable:
+                            volume
+                    })
+                }
+            );
 
 
-        const roundedAnswer =
-            Math.round(
-                amountToGive * 100
-            ) / 100;
+            if (!response.ok) {
+                liquidResult.textContent =
+                    "Unable to calculate liquid dose.";
+
+                return;
+            }
 
 
-        liquidResult.innerHTML = `
-            <strong>
-                Answer:
-            </strong>
+            const data =
+                await response.json();
 
-            ${roundedAnswer} mL
 
-            <br><br>
+            const roundedAnswer =
+                Math.round(
+                    data.amountToGive * 100
+                ) / 100;
 
-            ${ordered}
-            ÷
-            ${available}
-            ×
-            ${volume}
-            =
-            ${roundedAnswer}
-        `;
+
+            liquidResult.innerHTML = `
+                <strong>
+                    Answer:
+                </strong>
+
+                ${roundedAnswer} mL
+
+                <br><br>
+
+                ${ordered}
+                ÷
+                ${available}
+                ×
+                ${volume}
+                =
+                ${roundedAnswer}
+            `;
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            liquidResult.textContent =
+                "Unable to connect to the API.";
+        }
     }
 );
-
-
 // ==========================================
 // PRACTICE MODE
 // ==========================================
